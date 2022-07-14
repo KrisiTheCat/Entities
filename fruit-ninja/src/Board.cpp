@@ -12,13 +12,18 @@ void Board::load()
 {
 	m_background = loadTexture(GAME_FOLDER + "background.bmp");
 	Fruit fruit;
-	fruit.load(100, 1000, 100, 100, 1);
+	SDL_Texture* text = loadTexture(GAME_FOLDER + FRUIT_FOLDER + "passionFruit.bmp");
+	fruit.init(100, 100, text);
+	fruit.load(100, 1000);
 	m_fruits.push_back(fruit);
 }
 
 void Board::update()
 {
-	updateFruits();
+	if(m_frameId == 0) { updateFruits(); }
+	m_frameId++;
+	m_frameId %= m_speed;
+	
 }
 
 void Board::drawFruits()

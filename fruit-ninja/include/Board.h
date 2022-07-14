@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Presenter.h"
-#include "Fruit.h"
-
 #include <map>
 
+#include "defines.h"
+#include "Presenter.h"
+#include "Fruit.h"
 
 /*
 \brief Grid structure splitting a place into gridded squares
@@ -27,6 +27,8 @@ public:
 	void destroy();
 
 private:
+	int m_speed = 5;
+	int m_frameId = 0;
 	SDL_Texture* m_background;
 	vector<Fruit> m_fruits;
 };
