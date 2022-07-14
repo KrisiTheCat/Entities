@@ -1,8 +1,9 @@
 #pragma once
 
 #include "defines.h"
+#include "Fruit.h"
 
-#include "Presenter.h"
+#include <fstream>
 
 class ConfigManager
 {
@@ -12,4 +13,6 @@ public:
 	~ConfigManager();
 
 	void load();
+	void loadFruits();
+	vector<Fruit> m_allFruits;
 };

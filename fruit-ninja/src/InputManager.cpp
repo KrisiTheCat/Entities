@@ -92,7 +92,6 @@ void InputManager::handleInput()
     case SDL_MOUSEWHEEL:
         m_scroll = m_event.wheel.y;
         break;
-
     default:
         break;
     }
@@ -122,6 +121,11 @@ void InputManager::handleInput()
 bool InputManager::mouseIsPressed()
 {
     return m_mouseIsPressed;
+}
+
+bool InputManager::mouseIsHolded()
+{
+    return m_mouseIsHolded;
 }
 
 bool isMouseInRect(SDL_Rect rect)

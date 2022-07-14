@@ -29,6 +29,7 @@ using namespace std;
 
 static string UI_FOLDER = "UI\\";
 static string MENU_FOLDER = "menu\\";
+static string FRUIT_FOLDER = "fruits\\";
 static string IMG_FOLDER = "img\\";
 static string CONFIG_FOLDER = "config\\";
 static string FONT_FOLDER = "ttf\\";
@@ -192,10 +193,39 @@ struct float2
     }
 };
 
+struct RectHitBox
+{
+    int2 topLeft;
+    int width;
+    int height;
+};
+
 struct CircleHitBox
 {
-    int radius;
     int2 center;
+    int radius;
+};
+
+struct OvalHitBox
+{
+    int2 center;
+    int2 radius;
+};
+
+struct TriangleHitBox
+{
+    int2 a;
+    int2 b;
+    int2 c;
+};
+
+enum class HITBOX
+{
+    NONE = 0,
+    RECT = 1,
+    TRIANGLE = 2,
+    CIRCLE = 3,
+    OVAL = 4
 };
 
 enum class FONT

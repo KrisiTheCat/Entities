@@ -33,6 +33,7 @@ public:
     void setMouseMultiply(float2 multiplier); //< multiply the mouseCoor corespondingly to the screen resolution
 
     static bool mouseIsPressed();	
+    static bool mouseIsHolded();
 
 private:
     SDL_Event m_event;
