@@ -34,6 +34,9 @@ public:
 
     static bool mouseIsPressed();
 
+    Drawable m_test;
+	
+
 private:
     SDL_Event m_event;
 
