@@ -192,6 +192,12 @@ struct float2
     }
 };
 
+struct CircleHitBox
+{
+    int radius;
+    int2 center;
+};
+
 enum class FONT
 {
     NONE = 0,

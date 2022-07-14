@@ -10,15 +10,16 @@ Game::~Game()
 
 void Game::init()
 {
-
+	m_board.load();
 }
 
 void Game::destroy()
 {
-
+	m_board.destroy();
 }
 
 void Game::run()
 {
-
+	m_board.update();
+	m_board.draw();
 }
