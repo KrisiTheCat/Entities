@@ -207,9 +207,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\ConfigManager.cpp" />
     <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\Fruit.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -224,10 +226,12 @@
     <ClCompile Include="src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\Button.h" />
     <ClInclude Include="include\ConfigManager.h" />
     <ClInclude Include="include\defines.h" />
     <ClInclude Include="include\Engine.h" />
+    <ClInclude Include="include\Fruit.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\InputManager.h" />
     <ClInclude Include="include\Menu.h" />
