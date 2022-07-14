@@ -1,4 +1,5 @@
 #include "InputManager.h"
+#include "Presenter.h"
 
 bool InputManager::m_drag = bool();
 bool InputManager::m_mouseIsPressed = bool();
@@ -40,12 +41,27 @@ void stopDrag(void* handleInput)
     inputManager->m_drag = false;
 }
 
+int event_filter(void* input, SDL_Event* event)
+{
+    if (event->type == SDL_MOUSEBUTTONDOWN)
+    {
+        startDrag(input);
+    }
+    if (event->type == SDL_MOUSEBUTTONUP)
+    {
+        stopDrag(input);
+    }
+
+    return 1;
+}
 
 void InputManager::handleInput()
 {
     m_mouseIsPressed = false;
     m_mouseIsDoubleClicked = false;
 
+    SDL_SetEventFilter(&event_filter, (void*)this);
+	
     while (SDL_PollEvent(&m_event))
     {
         switch (m_event.type)
@@ -56,6 +72,10 @@ void InputManager::handleInput()
             m_mouseCoor.x *= m_mouseMultiply.x;
             m_mouseCoor.y *= m_mouseMultiply.y;
 
+            m_test.rect = { m_mouseCoor.x, m_mouseCoor.y, 50, 50 };
+
+            m_test.texture = loadTexture("game\\square.bmp");
+			
             break;
         case SDL_MOUSEBUTTONDOWN:
             if (m_event.button.button == SDL_BUTTON_LEFT)
@@ -67,6 +87,11 @@ void InputManager::handleInput()
         }
     }
 
+    if (m_drag)
+    {
+        drawObject(m_test);
+    }
+	
     m_keyboardState = SDL_GetKeyboardState(NULL);
 
     m_scroll = 0;
