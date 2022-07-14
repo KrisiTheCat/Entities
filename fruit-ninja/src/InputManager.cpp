@@ -71,10 +71,6 @@ void InputManager::handleInput()
 
             m_mouseCoor.x *= m_mouseMultiply.x;
             m_mouseCoor.y *= m_mouseMultiply.y;
-
-            m_test.rect = { m_mouseCoor.x, m_mouseCoor.y, 50, 50 };
-
-            m_test.texture = loadTexture("game\\square.bmp");
 			
             break;
         case SDL_MOUSEBUTTONDOWN:
@@ -85,11 +81,6 @@ void InputManager::handleInput()
 
             break;
         }
-    }
-
-    if (m_drag)
-    {
-        drawObject(m_test);
     }
 	
     m_keyboardState = SDL_GetKeyboardState(NULL);

@@ -32,10 +32,7 @@ public:
     void handleInput(); //< call the SDL_PollEvent fnc and update all variables
     void setMouseMultiply(float2 multiplier); //< multiply the mouseCoor corespondingly to the screen resolution
 
-    static bool mouseIsPressed();
-
-    Drawable m_test;
-	
+    static bool mouseIsPressed();	
 
 private:
     SDL_Event m_event;

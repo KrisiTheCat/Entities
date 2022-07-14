@@ -61,15 +61,37 @@ bool MouseIsInCircle(int2 coor, int2 center, int radius)
 	return false;
 }
 
+bool MouseIsInEllipse(int2 point, int2 elipseCenter, int2 elipseRadius)
+{
+	int2 dist;
+	
+	dist.x = point.x - elipseCenter.x;
+	dist.y = point.y - elipseCenter.y;
+	
+	if (dist.x * dist.x + dist.y * dist.y <= elipseRadius.x * elipseRadius.x 
+        + elipseRadius.y * elipseRadius.y)
+	{
+		return true;
+	}
+	
+	return false;
+}
+
+bool MouseIsInTriangle(int2 point, int2 trianglePoint1, int2 trianglePoint2, int2 trianglePoint3)
+{
+
+    return false;
+}
+
 void write(string text, int2 coor, SDL_Renderer* renderer, int FONT_SIZE)
 {
     SDL_Texture* texture;
     SDL_Surface* surface;
-	
+
     SDL_Rect rect;
-	
+
     SDL_Color fcolor;
-	
+
     TTF_Font* font;
 
     string str = FONT_FOLDER + "AdventPro-ExtraLight.ttf";

@@ -1,0 +1,5 @@
+BackgroundImg: background.bmp
+
+TrailW&H: 50 50
+
+TrailImg: trail.bmp

@@ -22,10 +22,11 @@ public:
 	void draw();
 	
 	void destroy();
-
 private:
 	Drawable m_drawable;
+	
 	CircleHitBox m_hitbox;
+	
 	int m_speedX;
 	int m_speedY;
 	int m_mass; 

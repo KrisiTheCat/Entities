@@ -30,7 +30,7 @@ void Fruit::update()
 {
 	//m_drawable.rect.x += m_speedX;
 	if(m_drawable.rect.y<=1920) m_drawable.rect.y -= m_speedY;
-	cout << m_drawable.rect.y << endl;
+
 	m_speedY--;
 }
 

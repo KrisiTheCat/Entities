@@ -1,14 +1,11 @@
 #pragma once
 
+#include <map>
+#include <fstream>
+
 #include "Presenter.h"
 #include "Fruit.h"
-
-#include <map>
-
-
-/*
-\brief Grid structure splitting a place into gridded squares
-*/
+#include "defines.h"
 
 class Board
 {
@@ -28,5 +25,8 @@ public:
 
 private:
 	SDL_Texture* m_background;
+	
 	vector<Fruit> m_fruits;
+
+	Drawable m_trail;
 };
