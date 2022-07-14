@@ -1,0 +1,7 @@
+Path: exitBtn.bmp
+
+Start_Rect: 1780 40 100 100
+
+Max_Increase: 20
+
+Increase_Per_Frame: 4
