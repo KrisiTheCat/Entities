@@ -33,9 +33,6 @@
     <ClCompile Include="src\Engine.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Grid.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\SoundManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Engine.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Grid.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\SoundManager.h">

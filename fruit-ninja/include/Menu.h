@@ -18,12 +18,10 @@ public:
 	void destroy();
 	
 private: 
-	
 	SDL_Texture* m_menuTexture;
 
 	Button m_exitBtn;
-	Button m_onePlayerBtn;
-	Button m_twoPlayersBtn;
+	Button m_playBtn;
 
 	PopUp* m_popUp;
 };

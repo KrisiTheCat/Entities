@@ -12,3 +12,6 @@
 
 SDL_Texture* LoadTexture(string configFile, SDL_Renderer* renderer);
 bool MouseIsInRect(int2 coor, SDL_Rect rect);
+bool MouseIsInCircle(int2 coor, int2 center, int radius);
+
+void write(string text, int2 coor, SDL_Renderer* renderer, int FONT_SIZE);

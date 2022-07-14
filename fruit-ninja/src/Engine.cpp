@@ -45,3 +45,58 @@ bool MouseIsInRect(int2 coor, SDL_Rect rect)
 
     return false;
 }
+
+bool MouseIsInCircle(int2 coor, int2 center, int radius)
+{
+    int2 dist;
+	
+    dist.x = coor.x - center.x;
+    dist.y = coor.y - center.y;
+
+	if (dist.x * dist.x + dist.y * dist.y <= radius * radius)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void write(string text, int2 coor, SDL_Renderer* renderer, int FONT_SIZE)
+{
+    SDL_Texture* texture;
+    SDL_Surface* surface;
+	
+    SDL_Rect rect;
+	
+    SDL_Color fcolor;
+	
+    TTF_Font* font;
+
+    string str = FONT_FOLDER + "AdventPro-ExtraLight.ttf";
+    font = TTF_OpenFont(str.c_str(), FONT_SIZE);
+
+    if (font == NULL)
+    {
+        fprintf(stderr, "error: font not found\n");
+        exit(EXIT_FAILURE);
+    }
+
+    fcolor.r = 255;
+    fcolor.g = 255;
+    fcolor.b = 255;
+    fcolor.a = 255;
+
+    const char* t = text.c_str();
+
+    surface = TTF_RenderText_Solid(font, t, fcolor);
+    texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+    rect.w = surface->w;
+    rect.h = surface->h;
+    rect.x = coor.x;
+    rect.y = coor.y;
+
+    SDL_RenderCopy(renderer, texture, NULL, &rect);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
+}

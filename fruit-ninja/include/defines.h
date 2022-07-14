@@ -37,8 +37,6 @@ static string SOUND_FOLDER = "music\\";
 static string TITLE_SCREEN_FOLDER = "titleScreen\\";
 static string WIN_SCREEN_FOLDER = "winScreen\\";
 static string GAME_FOLDER = "game\\";
-static string CARDS_FOLDER = "cards\\";
-static string PAWNS_FOLDER = "pawns\\";
 
 struct int2
 {
@@ -104,27 +102,6 @@ struct int2
         return (x == a.x && y == a.y);
     }
 
-};
-
-struct AImove
-{
-    int priority = 0;
-    int2 tile;
-    int pawn = 0;
-    int card = 0;
-
-    AImove(int a, int2 b, int c, int d)
-    {
-        priority = a;
-        tile = b;
-        pawn = c;
-        card = d;
-    }
-
-    bool operator<(const AImove a) const
-    {
-        return priority < a.priority;
-    }
 };
 
 struct float2
@@ -232,30 +209,6 @@ struct DrawableWithOpacity : public Drawable
 {
     int opacity = 0;
     int changePerFrame = 0;
-};
-
-struct CardData
-{
-    SDL_Texture* texture;
-    SDL_Texture* reversedTexture;
-
-    vector<int2> m_availableMoves;
-};
-
-struct Card : public Drawable
-{
-    CardData data;
-
-    int m_onTurn; // 1 - pl1, 2 - pl2, -1 - pl1 will get the card, -2 - pl2 will get the card
-};
-
-struct Pawn : public Drawable
-{
-    int m_owner; //1 - pl1, 2 - pl2
-
-    int2 m_coor;
-
-    bool isSensei;
 };
 
 enum class SOUND

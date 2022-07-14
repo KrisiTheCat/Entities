@@ -2,6 +2,11 @@
 
 #include <utility>
 
+#include <SDL.h>
+#include <fstream>
+#include <string>
+
+#include "defines.h"
 #include "Engine.h"
 
 /*
@@ -18,8 +23,11 @@ public:
     ~InputManager();
 
     static int2 m_mouseCoor;
+    static bool m_drag;
 
     static const Uint8* m_keyboardState;
+
+    int m_scroll;
 
     void handleInput(); //< call the SDL_PollEvent fnc and update all variables
     void setMouseMultiply(float2 multiplier); //< multiply the mouseCoor corespondingly to the screen resolution
@@ -32,9 +40,6 @@ private:
     float2 m_mouseMultiply;
 
     int2 m_screenCenter;
-    int2 m_direction;
-
-    string m_inputData;
 
     static bool m_mouseIsPressed;
     static bool m_mouseIsDoubleClicked;
