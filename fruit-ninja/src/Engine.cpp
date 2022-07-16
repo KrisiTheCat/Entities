@@ -77,9 +77,22 @@ bool MouseIsInEllipse(int2 point, int2 elipseCenter, int2 elipseRadius)
 	return false;
 }
 
-bool MouseIsInTriangle(int2 point, int2 trianglePoint1, int2 trianglePoint2, int2 trianglePoint3)
+float area(int2 trianglePoint1, int2 trianglePoint2, int2 trianglePoint3)
 {
-
-    return false;
+	return abs((trianglePoint1.x * (trianglePoint2.y - trianglePoint3.y) + 
+                trianglePoint2.x * (trianglePoint3.y - trianglePoint1.y) + 
+                trianglePoint3.x * (trianglePoint1.y - trianglePoint2.y)) / 2.0);
 }
 
+bool MouseIsInTriangle(int2 point, int2 trianglePoint1, int2 trianglePoint2, int2 trianglePoint3)
+{
+    float A = area(trianglePoint1, trianglePoint2, trianglePoint3);
+
+    float A1 = area(point, trianglePoint2, trianglePoint3);
+
+    float A2 = area(trianglePoint1, point, trianglePoint3);
+
+    float A3 = area(trianglePoint1, trianglePoint2, point);
+
+    return (A == A1 + A2 + A3);
+}

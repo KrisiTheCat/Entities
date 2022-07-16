@@ -35,12 +35,11 @@ void Board::load(int bombRarity)
 	m_trail.texture = loadTexture(GAME_FOLDER + trail);
 	
 	m_fruitScore.texture = loadTexture(GAME_FOLDER + fruitImg);
-
+	
 	loadHearts();
 	
-	m_score = 69;
+	m_score = 0;
 	
-
 	m_bombRarity = bombRarity;
 	m_timeBeforeNextWave = 0;
 }
@@ -148,59 +147,63 @@ void Board::updateFruits()
 	for (int i = 0; i < m_fruits.size(); i++)
 	{
 		m_fruits.at(i).update();
+
 		if (m_fruits.at(i).m_outOfScreen)
 		{
 			m_fruits.erase(m_fruits.begin() + i);
 			continue;
 		}
-
-		if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox())) // BOMB
+		
+		if (InputManager::m_drag)
 		{
-			m_lives--;
+			if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox()))
+			{
+				m_lives--;
 
-			m_hearts[m_lives].texture = m_deadTexture;
+				m_hearts[m_lives].texture = m_deadTexture;
 
-			if (m_lives == 0)
-			{
-				world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
+				if (m_lives == 0)
+				{
+					world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
+				}
 			}
-		}
 
-		switch (m_fruits[i].m_hitBoxType)
-		{
-		case 1: // rect
-			if (isMouseInRect(m_fruits[i].getRectHitBox()))
+			switch (m_fruits[i].m_hitBoxType)
 			{
-				m_fruits.at(i).cut();
-				m_score++;
+			case 1: // rect
+				if (isMouseInRect(m_fruits[i].getRectHitBox()))
+				{
+					m_fruits.at(i).cut();
+					m_score++;
+				}
+				break;
+			case 2: // triangle 
+				if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].getTriangleHitBox().a,
+					m_fruits[i].getTriangleHitBox().b, m_fruits[i].getTriangleHitBox().c))
+				{
+					m_fruits.at(i).cut();
+					m_score++;
+				}
+				break;
+			case 3: // circle
+				if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].getCircleHitBox().center,
+					m_fruits[i].getCircleHitBox().radius))
+				{
+					m_fruits.at(i).cut();
+					m_score++;
+				}
+				break;
+			case 4: // ellipse
+				if (MouseIsInEllipse(InputManager::m_mouseCoor, m_fruits[i].getOvalHitBox().center,
+					m_fruits[i].getOvalHitBox().radius))
+				{
+					m_fruits.at(i).cut();
+					m_score++;
+				}
+				break;
+			default:
+				break;
 			}
-			break;
-		case 2: // triangle 
-			if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].getTriangleHitBox().a,
-				m_fruits[i].getTriangleHitBox().b, m_fruits[i].getTriangleHitBox().c))
-			{
-				m_fruits.at(i).cut();
-				m_score++;
-			}
-			break;
-		case 3: // circle
-			if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].getCircleHitBox().center,
-				m_fruits[i].getCircleHitBox().radius))
-			{
-				m_fruits.at(i).cut();
-				m_score++;
-			}
-			break;
-		case 4: // ellipse
-			if (MouseIsInEllipse(InputManager::m_mouseCoor, m_fruits[i].getOvalHitBox().center,
-				m_fruits[i].getOvalHitBox().radius))
-			{
-				m_fruits.at(i).cut();
-				m_score++;
-			}
-			break;
-		default:
-			break;
 		}
 	}
 }
