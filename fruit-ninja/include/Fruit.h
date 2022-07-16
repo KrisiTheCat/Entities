@@ -42,6 +42,7 @@ public:
 	CircleHitBox m_circleHitBox;
 	OvalHitBox m_ovalHitBox;
 
+	bool m_isCut;
 	bool m_isBomb;
 	bool m_outOfScreen = false;
 
@@ -51,7 +52,6 @@ private:
 	Rotatable m_rotatable;
 	vector<FruitSlice> m_slices;
 
-	bool m_isCut;
 	int m_initAfter;
 	int m_splashTime;
 	int m_speedX;

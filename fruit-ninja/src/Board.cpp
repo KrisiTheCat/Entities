@@ -150,6 +150,7 @@ void Board::updateFruits()
 
 		if (m_fruits.at(i).m_outOfScreen)
 		{
+			if(!m_fruits.at(i).m_isCut && !m_fruits.at(i).m_isBomb) removeHeart();
 			m_fruits.erase(m_fruits.begin() + i);
 			continue;
 		}
@@ -158,14 +159,8 @@ void Board::updateFruits()
 		{
 			if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox()))
 			{
-				m_lives--;
-
-				m_hearts[m_lives].texture = m_deadTexture;
-
-				if (m_lives == 0)
-				{
-					world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
-				}
+				removeHeart();
+				removeHeart();
 			}
 
 			switch (m_fruits[i].m_hitBoxType)
@@ -205,6 +200,19 @@ void Board::updateFruits()
 				break;
 			}
 		}
+	}
+}
+
+void Board::removeHeart()
+{
+	m_lives--;
+
+	m_hearts[m_lives].texture = m_deadTexture;
+	cout << "life: " << m_lives << endl;
+
+	if (m_lives == 0)
+	{
+		world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
 	}
 }
 

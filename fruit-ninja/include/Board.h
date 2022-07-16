@@ -51,6 +51,7 @@ private:
 	SDL_Texture* m_deadTexture;
 
 	void loadHearts();
+	void removeHeart();
 
 	void updateFruits();
 
