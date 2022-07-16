@@ -4,7 +4,7 @@ TrailW&H: 50 50
 
 TrailImg: trail.bmp
 
-FruitRect: 20 0 150 150
+FruitRect: 20 20 120 120
 
 FruitUI: passionFruitUI.bmp
 

@@ -26,11 +26,12 @@ public:
 	void destroy();
 
 	int m_bombRarity;
-
-private:
+	
 	int m_lives;
 
-	int m_speed = 1;
+private:
+
+	int m_speed = 3;
 	int m_frameId = 0;
 
 	int m_timeBeforeNextWave = 0;
