@@ -56,6 +56,8 @@ void Menu::run()
 		if (mouseIsPressed())
 		{
 			//easy
+
+			world.m_stateManager.changeGameState(GAME_STATE::GAME);
 		}
 	}
 	else
@@ -70,6 +72,8 @@ void Menu::run()
 		if (mouseIsPressed())
 		{
 			//medium
+
+			world.m_stateManager.changeGameState(GAME_STATE::GAME);
 		}
 	}
 	else
@@ -84,6 +88,8 @@ void Menu::run()
 		if (mouseIsPressed())
 		{
 			//hard
+
+			world.m_stateManager.changeGameState(GAME_STATE::GAME);
 		}
 	}
 	else
