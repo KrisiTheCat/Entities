@@ -217,7 +217,6 @@
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Menu.cpp" />
-    <ClCompile Include="src\PopUp.cpp" />
     <ClCompile Include="src\Presenter.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\State.cpp" />
@@ -225,6 +224,7 @@
     <ClCompile Include="src\TitleScreen.cpp" />
     <ClCompile Include="src\WinScreen.cpp" />
     <ClCompile Include="src\World.cpp" />
+    <ClCompile Include="src\Writer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Board.h" />
@@ -237,7 +237,6 @@
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\InputManager.h" />
     <ClInclude Include="include\Menu.h" />
-    <ClInclude Include="include\PopUp.h" />
     <ClInclude Include="include\Presenter.h" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\State.h" />
@@ -245,6 +244,7 @@
     <ClInclude Include="include\TitleScreen.h" />
     <ClInclude Include="include\WinScreen.h" />
     <ClInclude Include="include\World.h" />
+    <ClInclude Include="include\Writer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

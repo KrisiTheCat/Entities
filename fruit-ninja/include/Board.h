@@ -9,10 +9,11 @@
 
 class Board
 {
-
 public:
 	Board();
 	~Board();
+	
+	int m_score;
 
 	void load(int bombRarity);
 
@@ -23,8 +24,6 @@ public:
 	void draw();
 	
 	void destroy();
-
-	int m_score;
 
 private:
 	int m_lives;
@@ -41,9 +40,9 @@ private:
 
 	Drawable m_trail;
 
+	Drawable m_scoreUI;
+	
 	Drawable m_fruitScore;
-
-	//SCORE 
 
 	vector<Drawable> m_hearts;
 

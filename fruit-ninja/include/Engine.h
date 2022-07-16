@@ -15,5 +15,3 @@ bool MouseIsInRect(int2 coor, SDL_Rect rect);
 bool MouseIsInCircle(int2 coor, int2 center, int radius);
 bool MouseIsInEllipse(int2 point, int2 elipseCenter, int2 elipseRadius);
 bool MouseIsInTriangle(int2 point, int2 trianglePoint1, int2 trianglePoint2, int2 trianglePoint3);
-
-void write(string text, int2 coor, SDL_Renderer* renderer, int FONT_SIZE);

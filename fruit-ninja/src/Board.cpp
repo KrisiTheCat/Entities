@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "World.h"
 #include "InputManager.h"
+#include "World.h"
 
 extern World world;
 
@@ -37,11 +38,9 @@ void Board::load(int bombRarity)
 
 	loadHearts();
 	
-	/*Fruit fruit;
-	SDL_Texture* text = loadTexture(GAME_FOLDER + FRUITS_FOLDER + "passionFruit.bmp");
-	fruit.init(100, 100, text);
-	fruit.load(100, 1000);
-	m_fruits.push_back(fruit);*/
+	m_score = 69;
+	
+
 	m_bombRarity = bombRarity;
 	m_timeBeforeNextWave = 0;
 }
@@ -52,7 +51,7 @@ void Board::loadHearts()
 
 	string tmp, heartImg, brokenHeartImg;
 
-	int _offset, _lives;
+	int _offset;
 
 	Drawable _heart;
 
@@ -61,7 +60,7 @@ void Board::loadHearts()
 	stream >> tmp >> _heart.rect.x >> _heart.rect.y >> _heart.rect.w >> _heart.rect.h;
 	stream >> tmp >> heartImg >> brokenHeartImg;
 	stream >> tmp >> _offset;
-	stream >> tmp >> _lives;
+	stream >> tmp >> m_lives;
 
 	stream.close();
 
@@ -71,7 +70,7 @@ void Board::loadHearts()
 
 	m_hearts.push_back(_heart);
 	
-	for (int i = 1; i < _lives; i++)
+	for (int i = 1; i < m_lives; i++)
 	{
 		_heart.rect.x -= _offset;
 		
@@ -102,6 +101,13 @@ void Board::draw()
 	drawFruitsSplashes();
 
 	drawHearts();
+
+	auto score = getText(to_string(m_score), FONT::ASSASIN, COLOR::DARK, 72);
+	m_scoreUI.texture = score.second;
+		
+	m_scoreUI.rect = {170, 40, score.first.x, score.first.y};
+
+	drawObject(m_scoreUI);
 }
 
 void Board::drawFruits()
@@ -152,7 +158,7 @@ void Board::updateFruits()
 		case 1: // rect
 			if (isMouseInRect(m_fruits[i].m_rectHitBox))
 			{
-
+				
 				m_score++;
 			}
 			break;
@@ -160,7 +166,7 @@ void Board::updateFruits()
 			if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].m_triangleHitBox.a,
 				m_fruits[i].m_triangleHitBox.b, m_fruits[i].m_triangleHitBox.c))
 			{
-
+				
 				m_score++;
 			}
 			break;

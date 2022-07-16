@@ -57,13 +57,13 @@
     <ClCompile Include="src\State.cpp">
       <Filter>src\STATES</Filter>
     </ClCompile>
-    <ClCompile Include="src\PopUp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Board.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Fruit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Writer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\FruitSlice.cpp">
@@ -113,13 +113,13 @@
     <ClInclude Include="include\WinScreen.h">
       <Filter>include\STATES</Filter>
     </ClInclude>
-    <ClInclude Include="include\PopUp.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\Board.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Fruit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Writer.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\FruitSlice.h">
