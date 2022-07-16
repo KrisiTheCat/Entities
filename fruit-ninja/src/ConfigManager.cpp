@@ -54,6 +54,7 @@ void ConfigManager::loadFruits()
 			stream >> splSize.x >> splSize.y >> splTime;
 			SDL_Texture* textSpl = loadTexture(GAME_FOLDER + SPLASHES_FOLDER + name + "Splash.bmp");
 			fruit.initBomb(width, height, text, textSpl, splSize, splTime);
+			fruit.setRectHitBox();
 		}
 		else
 		{

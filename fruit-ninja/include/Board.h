@@ -28,7 +28,7 @@ public:
 private:
 	int m_lives;
 
-	int m_speed = 5;
+	int m_speed = 1;
 	int m_frameId = 0;
 
 	int m_bombRarity;

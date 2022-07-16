@@ -96,9 +96,9 @@ void Board::draw()
 
 	drawObject(m_fruitScore);
 
-	drawFruits();
-
 	drawFruitsSplashes();
+
+	drawFruits();
 
 	drawHearts();
 
@@ -114,8 +114,7 @@ void Board::drawFruits()
 {
 	for (int i = 0; i < m_fruits.size(); i++)
 	{
-		m_fruits.at(i).update();
-		if (m_fruits.at(i).m_outOfScreen) m_fruits.erase(m_fruits.begin() + i);
+		m_fruits.at(i).draw();
 	}
 	
 	if (InputManager::m_drag)
@@ -140,8 +139,13 @@ void Board::updateFruits()
 	for (int i = 0; i < m_fruits.size(); i++)
 	{
 		m_fruits.at(i).update();
+		if (m_fruits.at(i).m_outOfScreen)
+		{
+			m_fruits.erase(m_fruits.begin() + i);
+			continue;
+		}
 
-		if (false) // BOMB
+		if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox())) // BOMB
 		{
 			m_lives--;
 
@@ -156,33 +160,33 @@ void Board::updateFruits()
 		switch (m_fruits[i].m_hitBoxType)
 		{
 		case 1: // rect
-			if (isMouseInRect(m_fruits[i].m_rectHitBox))
+			if (isMouseInRect(m_fruits[i].getRectHitBox()))
 			{
-				
+				m_fruits.at(i).cut();
 				m_score++;
 			}
 			break;
 		case 2: // triangle 
-			if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].m_triangleHitBox.a,
-				m_fruits[i].m_triangleHitBox.b, m_fruits[i].m_triangleHitBox.c))
+			if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].getTriangleHitBox().a,
+				m_fruits[i].getTriangleHitBox().b, m_fruits[i].getTriangleHitBox().c))
 			{
-				
+				m_fruits.at(i).cut();
 				m_score++;
 			}
 			break;
 		case 3: // circle
-			if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].m_circleHitBox.center,
-				m_fruits[i].m_circleHitBox.radius))
+			if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].getCircleHitBox().center,
+				m_fruits[i].getCircleHitBox().radius))
 			{
-
+				m_fruits.at(i).cut();
 				m_score++;
 			}
 			break;
 		case 4: // ellipse
-			if (MouseIsInEllipse(InputManager::m_mouseCoor, m_fruits[i].m_circleHitBox.center,
-				m_fruits[i].m_ovalHitBox.radius))
+			if (MouseIsInEllipse(InputManager::m_mouseCoor, m_fruits[i].getOvalHitBox().center,
+				m_fruits[i].getOvalHitBox().radius))
 			{
-
+				m_fruits.at(i).cut();
 				m_score++;
 			}
 			break;

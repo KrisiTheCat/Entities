@@ -142,7 +142,6 @@ void Fruit::update()
 				return;
 			}
 			m_speedY--;
-			if (m_speedY == 0) cut();
 		}
 		else m_initAfter--;
 	}
@@ -160,7 +159,10 @@ void Fruit::update()
 
 void Fruit::draw()
 {
-	if (!m_isCut) drawObjectRotated(m_drawable, m_rotatable);
+	if (!m_isCut)
+	{
+		drawObjectRotated(m_drawable, m_rotatable);
+	}
 	else
 	{
 		for (int i = 0; i < m_slices.size(); i++)
