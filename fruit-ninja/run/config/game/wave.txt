@@ -1,4 +1,4 @@
-fruitsInWave: 2 3
+fruitsInWave: 1 1
 bombsInWave: 1
 timeBetweenWaves: 100 100
 timeBetweenFruits: 1 3

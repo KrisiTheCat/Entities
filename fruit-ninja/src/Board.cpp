@@ -79,7 +79,7 @@ void Board::loadHearts()
 
 void Board::update()
 {
-	if(m_frameId == 0)
+	if (m_frameId == 0)
 	{
 		if (m_timeBeforeNextWave == 0) initWave();
 		m_timeBeforeNextWave--;

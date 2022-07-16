@@ -66,7 +66,7 @@ void Menu::run()
 		if (mouseIsPressed())
 		{
 			//easy
-
+			world.m_stateManager.m_game->m_board.m_bombRarity = 0;
 			world.m_stateManager.changeGameState(GAME_STATE::GAME);
 		}
 	}
@@ -82,7 +82,7 @@ void Menu::run()
 		if (mouseIsPressed())
 		{
 			//medium
-
+			world.m_stateManager.m_game->m_board.m_bombRarity = 4;
 			world.m_stateManager.changeGameState(GAME_STATE::GAME);
 		}
 	}
@@ -98,7 +98,7 @@ void Menu::run()
 		if (mouseIsPressed())
 		{
 			//hard
-
+			world.m_stateManager.m_game->m_board.m_bombRarity = 15;
 			world.m_stateManager.changeGameState(GAME_STATE::GAME);
 		}
 	}

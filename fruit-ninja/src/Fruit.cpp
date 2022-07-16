@@ -153,7 +153,7 @@ void Fruit::update()
 		}
 		m_splashTime--;
 		if (m_splashTime <= 0) m_outOfScreen = true;
-		if (m_splashTime <= 200) m_splash.opacity = m_splashTime;
+		if (m_splashTime <= 255) m_splash.opacity = m_splashTime;
 	}
 }
 
@@ -182,7 +182,7 @@ void Fruit::cut()
 	m_isCut = true;
 	m_splash.rect.x = m_drawable.rect.x - (m_splash.rect.w - m_drawable.rect.w) / 2;
 	m_splash.rect.y = m_drawable.rect.y - (m_splash.rect.h - m_drawable.rect.h) / 2;
-	m_splash.opacity = 200;
+	m_splash.opacity = 255;
 	bool left = true;
 	for (int i = 0; i < m_slices.size(); i++)
 	{
