@@ -1,1 +1,5 @@
 Background_Music: Background.mp3
+
+Slice: slice.wav
+
+Bomb: bomb.wav

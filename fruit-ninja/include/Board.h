@@ -29,6 +29,9 @@ public:
 	
 	int m_lives;
 
+	vector<Drawable> m_hearts;
+	vector<Fruit> m_fruits;
+
 private:
 
 	int m_speed = 3;
@@ -36,8 +39,6 @@ private:
 
 	int m_timeBeforeNextWave = 0;
 	SDL_Texture* m_background;
-	
-	vector<Fruit> m_fruits;
 
 	Drawable m_trail;
 
@@ -46,8 +47,6 @@ private:
 	Drawable m_scoreUI;
 	
 	Drawable m_fruitScore;
-
-	vector<Drawable> m_hearts;
 
 	SDL_Texture* m_deadTexture;
 

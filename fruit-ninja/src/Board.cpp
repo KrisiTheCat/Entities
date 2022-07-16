@@ -154,8 +154,11 @@ void Board::updateFruits()
 
 		if (m_fruits.at(i).m_outOfScreen)
 		{
-			if(!m_fruits.at(i).m_isCut && !m_fruits.at(i).m_isBomb) removeHeart();
+			if(!m_fruits.at(i).m_isCut && !m_fruits.at(i).m_isBomb) 
+				removeHeart();
+			
 			m_fruits.erase(m_fruits.begin() + i);
+			
 			continue;
 		}
 		
@@ -163,8 +166,16 @@ void Board::updateFruits()
 		{
 			if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox()))
 			{
-				removeHeart();
-				removeHeart();
+				if (m_lives > 1)
+				{
+					removeHeart();
+
+					removeHeart();
+				}
+				else
+				{
+					removeHeart();
+				}
 			}
 
 			switch (m_fruits[i].m_hitBoxType)
@@ -176,6 +187,8 @@ void Board::updateFruits()
 					
 					if (!m_fruits[i].m_isBomb)
 					{
+						world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
+						
 						m_score++;
 					}
 				}
@@ -184,7 +197,10 @@ void Board::updateFruits()
 				if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].getTriangleHitBox().a,
 					m_fruits[i].getTriangleHitBox().b, m_fruits[i].getTriangleHitBox().c))
 				{
+					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
+					
 					m_fruits.at(i).cut();
+					
 					m_score++;
 				}
 				break;
@@ -192,7 +208,10 @@ void Board::updateFruits()
 				if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].getCircleHitBox().center,
 					m_fruits[i].getCircleHitBox().radius))
 				{
+					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
+					
 					m_fruits.at(i).cut();
+					
 					m_score++;
 				}
 				break;
@@ -200,7 +219,10 @@ void Board::updateFruits()
 				if (MouseIsInEllipse(InputManager::m_mouseCoor, m_fruits[i].getOvalHitBox().center,
 					m_fruits[i].getOvalHitBox().radius))
 				{
+					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
+
 					m_fruits.at(i).cut();
+					
 					m_score++;
 				}
 				break;
@@ -212,15 +234,18 @@ void Board::updateFruits()
 }
 
 void Board::removeHeart()
-{
+{	
 	m_lives--;
 
+	world.m_soundManager.playSound(SOUND::BOMB_EXPLOSION);
+
 	m_hearts[m_lives].texture = m_deadTexture;
-	cout << "life: " << m_lives << endl;
 
 	if (m_lives == 0)
-	{
+	{	
 		world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
+		
+		return;
 	}
 }
 

@@ -277,5 +277,7 @@ struct DrawableWithOpacity : public Drawable
 enum class SOUND
 {
     NONE = 0,
-    BACKGROUND = 1
+    BACKGROUND = 1,
+    SLICE_MUSIC = 2,
+    BOMB_EXPLOSION = 3
 };

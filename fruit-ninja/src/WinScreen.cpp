@@ -56,6 +56,9 @@ void WinScreen::run()
 
 		if (mouseIsPressed())
 		{			
+			world.m_stateManager.m_game->m_board.m_hearts.clear();			
+			world.m_stateManager.m_game->m_board.m_fruits.clear();			
+			
 			world.m_stateManager.changeGameState(GAME_STATE::MENU);
 
 			return;
