@@ -43,11 +43,21 @@ void Menu::init()
 
 	m_hard.texture = loadTexture(MENU_FOLDER + hardImg);
 	m_hard.glowTexture = loadTexture(MENU_FOLDER + hardImgGlow);
+
+	m_exitBtn.init(exitBtnPath, MENU_FOLDER);
 }
 
 void Menu::run()
 {	
 	drawObject(m_menuTexture);
+
+	m_exitBtn.update();
+	m_exitBtn.draw();
+
+	if (isMouseInRect(m_exitBtn.getRect()) && mouseIsPressed())
+	{
+		world.m_stateManager.changeGameState(GAME_STATE::NONE);
+	}
 
 	if (isMouseInRect(m_easy.rect))
 	{
@@ -101,6 +111,8 @@ void Menu::run()
 void Menu::destroy()
 {
 	SDL_DestroyTexture(m_menuTexture);
+
+	m_exitBtn.destroy(); 
 
 	//Destroy all textures !!!
 }
