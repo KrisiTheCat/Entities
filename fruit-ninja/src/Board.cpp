@@ -81,10 +81,14 @@ void Board::update()
 {
 	if (m_frameId == 0)
 	{
-		if (m_timeBeforeNextWave == 0) initWave();
+		if (m_timeBeforeNextWave == 0) 
+			initWave();
+		
 		m_timeBeforeNextWave--;
+		
 		updateFruits();
 	}
+	
 	m_frameId++;
 	m_frameId %= m_speed;
 }
@@ -158,13 +162,31 @@ void Board::updateFruits()
 		{
 			if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox()))
 			{
-				m_lives--;
-
-				m_hearts[m_lives].texture = m_deadTexture;
-
-				if (m_lives == 0)
+				if (m_lives > 1)
 				{
+					m_lives -= 2;
+
+					m_hearts[m_lives].texture = m_deadTexture;
+					m_hearts[m_lives + 1].texture = m_deadTexture;
+				}
+				else
+				{
+					m_lives--;
+
+					m_hearts[m_lives + 1].texture = m_deadTexture;
+
+					SDL_Delay(100);
+				}
+
+				if (m_lives <= 0)
+				{
+					m_hearts.clear();
+
+					m_fruits.clear();
+					
 					world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
+
+					return;
 				}
 			}
 
@@ -174,7 +196,11 @@ void Board::updateFruits()
 				if (isMouseInRect(m_fruits[i].getRectHitBox()))
 				{
 					m_fruits.at(i).cut();
-					m_score++;
+					
+					if (!m_fruits[i].m_isBomb)
+					{
+						m_score++;
+					}
 				}
 				break;
 			case 2: // triangle 
@@ -212,28 +238,46 @@ void Board::initWave()
 {
 	int fruitsCount = world.m_config.m_fruitsInWave.x + (rand() % world.m_config.m_fruitsInWave.y);
 	int bombsSoFar = 0;
+	
 	for (int i = 0; i < fruitsCount; i++)
 	{
 		int fruitId = rand() % (world.m_config.m_allFruits.size() - 1 + m_bombRarity);
-		if (fruitId >= world.m_config.m_allFruits.size()) fruitId = world.m_config.m_allFruits.size() - 1;
+		
+		if (fruitId >= world.m_config.m_allFruits.size()) 
+			fruitId = world.m_config.m_allFruits.size() - 1;
+		
 		if (world.m_config.m_allFruits.at(fruitId).m_isBomb)
 		{
-			if (bombsSoFar < world.m_config.m_bombsInWave) bombsSoFar++;
-			else {
-				while (world.m_config.m_allFruits.at(fruitId).m_isBomb) {
+			if (bombsSoFar < world.m_config.m_bombsInWave) 
+				bombsSoFar++;
+			else 
+			{
+				while (world.m_config.m_allFruits.at(fruitId).m_isBomb) 
+				{
 					fruitId = rand() % world.m_config.m_allFruits.size();
-					if (fruitId > world.m_config.m_allFruits.size()) fruitId = 0;
+					
+					if (fruitId > world.m_config.m_allFruits.size()) 
+						fruitId = 0;
 				}
 			}
 		}
+		
 		Fruit fruit = world.m_config.m_allFruits.at(fruitId);
+		
 		int speedX = world.m_config.m_speedX.x + (rand() % world.m_config.m_speedX.y);
 		int speedY = world.m_config.m_speedY.x + (rand() % world.m_config.m_speedY.y);
+		
 		int x = (rand() % world.m_config.m_width);
-		if (speedX < 0 && x < speedY * 2 * (-1) * speedX + 100) x = world.m_config.m_width - x;
-		if (speedX > 0 && x > world.m_config.m_width - speedY * 2 * speedX - 100) x = world.m_config.m_width - x;
+		
+		if (speedX < 0 && x < speedY * 2 * (-1) * speedX + 100) 
+			x = world.m_config.m_width - x;
+		
+		if (speedX > 0 && x > world.m_config.m_width - speedY * 2 * speedX - 100) 
+			x = world.m_config.m_width - x;
 		int initAfter = world.m_config.m_fruitsInWave.x + (rand() % world.m_config.m_fruitsInWave.y);
+		
 		fruit.load(initAfter, x, world.m_config.m_height, speedX, speedY, 20);
+		
 		m_fruits.push_back(fruit);
 	}
 	m_timeBeforeNextWave = world.m_config.m_timeBetweenWaves.x + (rand() % world.m_config.m_timeBetweenWaves.y);

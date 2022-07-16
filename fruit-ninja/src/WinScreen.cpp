@@ -46,7 +46,7 @@ void WinScreen::run()
 	auto score = getText(to_string(world.m_stateManager.m_game->m_board.m_score), FONT::ASSASIN, COLOR::LIGHT, 72);
 	m_scoreUI.texture = score.second;
 
-	m_scoreUI.rect = { 510, 105, score.first.x, score.first.y };
+	m_scoreUI.rect = { 510, 115, score.first.x, score.first.y };
 
 	drawObject(m_scoreUI);
 	
@@ -55,7 +55,7 @@ void WinScreen::run()
 		SDL_RenderCopy(world.m_presenter.m_main_renderer, m_playAgain.glowTexture, NULL, &m_playAgain.rect);
 
 		if (mouseIsPressed())
-		{
+		{			
 			world.m_stateManager.changeGameState(GAME_STATE::MENU);
 
 			return;
