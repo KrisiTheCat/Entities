@@ -26,32 +26,32 @@ void Fruit::load(int x, int y)
 
 void Fruit::setRectHitBox(int2 topLeft, int width, int height)
 {
-	m_hitBoxType = HITBOX::RECT;
-	m_rectHitBox.topLeft = topLeft;
-	m_rectHitBox.width = width;
-	m_rectHitBox.height = height;
+	//m_hitBoxType = HITBOX::RECT;
+	//m_rectHitBox.topLeft = topLeft;
+	//m_rectHitBox.width = width;
+	//m_rectHitBox.height = height;
 }
 
 void Fruit::setTriangleHitBox(int2 a, int2 b, int2 c)
 {
-	m_hitBoxType = HITBOX::TRIANGLE;
-	m_triangleHitBox.a = a;
-	m_triangleHitBox.b = b;
-	m_triangleHitBox.c = c;
+	//m_hitBoxType = HITBOX::TRIANGLE;
+	//m_triangleHitBox.a = a;
+	//m_triangleHitBox.b = b;
+	//m_triangleHitBox.c = c;
 }
 
 void Fruit::setCircleHitBox(int2 center, int r)
 {
-	m_hitBoxType = HITBOX::CIRCLE;
-	m_circleHitBox.center = center;
-	m_circleHitBox.radius = r;
+	//m_hitBoxType = HITBOX::CIRCLE;
+	//m_circleHitBox.center = center;
+	//m_circleHitBox.radius = r;
 }
 
 void Fruit::setOvalHitBox(int2 center, int r1, int r2)
 {
-	m_hitBoxType = HITBOX::OVAL;
-	m_ovalHitBox.radius1 = r1;
-	m_ovalHitBox.radius2 = r2;
+	//m_hitBoxType = HITBOX::OVAL;
+	//m_ovalHitBox.radius1 = r1;
+	//m_ovalHitBox.radius2 = r2;
 }
 
 void Fruit::update()

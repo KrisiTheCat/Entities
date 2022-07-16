@@ -1,5 +1,8 @@
 #include "Board.h"
 #include "InputManager.h"
+#include "World.h"
+
+extern World world;
 
 Board::Board()
 {
@@ -33,6 +36,8 @@ void Board::load()
 
 	loadHearts();
 	
+	m_score = 69;
+	
 	Fruit fruit;
 	SDL_Texture* text = loadTexture(GAME_FOLDER + FRUIT_FOLDER + "passionFruit.bmp");
 	fruit.init(100, 100, text);
@@ -46,7 +51,7 @@ void Board::loadHearts()
 
 	string tmp, heartImg, brokenHeartImg;
 
-	int _offset, _lives;
+	int _offset;
 
 	Drawable _heart;
 
@@ -55,7 +60,7 @@ void Board::loadHearts()
 	stream >> tmp >> _heart.rect.x >> _heart.rect.y >> _heart.rect.w >> _heart.rect.h;
 	stream >> tmp >> heartImg >> brokenHeartImg;
 	stream >> tmp >> _offset;
-	stream >> tmp >> _lives;
+	stream >> tmp >> m_lives;
 
 	stream.close();
 
@@ -65,7 +70,7 @@ void Board::loadHearts()
 
 	m_hearts.push_back(_heart);
 	
-	for (int i = 1; i < _lives; i++)
+	for (int i = 1; i < m_lives; i++)
 	{
 		_heart.rect.x -= _offset;
 		
@@ -78,7 +83,6 @@ void Board::update()
 	if(m_frameId == 0) { updateFruits(); }
 	m_frameId++;
 	m_frameId %= m_speed;
-	
 }
 
 void Board::draw()
@@ -90,6 +94,13 @@ void Board::draw()
 	drawFruits();
 
 	drawHearts();
+
+	auto score = getText(to_string(m_score), FONT::ASSASIN, COLOR::DARK, 72);
+	m_scoreUI.texture = score.second;
+		
+	m_scoreUI.rect = {170, 40, score.first.x, score.first.y};
+
+	drawObject(m_scoreUI);
 }
 
 void Board::drawFruits()
@@ -121,13 +132,26 @@ void Board::updateFruits()
 	for (int i = 0; i < m_fruits.size(); i++)
 	{
 		m_fruits.at(i).update();
-		
+
+		if (false) // BOMB
+		{
+			m_lives--;
+
+			m_hearts[m_lives].texture = m_deadTexture;
+
+			if (m_lives == 0)
+			{
+				world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
+			}
+		}
+
 		switch (m_fruits[i].m_hitBoxType)
 		{
 		case 1: // rect
 			if (isMouseInRect(m_fruits[i].m_rectHitBox))
 			{
 				
+				m_score++;
 			}
 			break;
 		case 2: // triangle 
@@ -135,6 +159,7 @@ void Board::updateFruits()
 				m_fruits[i].m_triangleHitBox.b ,m_fruits[i].m_triangleHitBox.c))
 			{
 				
+				m_score++;
 			}
 			break;
 		case 3: // circle
@@ -142,6 +167,7 @@ void Board::updateFruits()
 				m_fruits[i].m_circleHitBox.radius))
 			{
 
+				m_score++;
 			}
 			break;
 		case 4: // ellipse
@@ -149,6 +175,7 @@ void Board::updateFruits()
 				m_fruits[i].m_ovalHitBox.radius))
 			{
 
+				m_score++;
 			}
 			break;
 		default:

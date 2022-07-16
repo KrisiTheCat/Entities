@@ -4,7 +4,6 @@
 
 #include "defines.h"
 #include "State.h"
-#include "PopUp.h"
 #include "Button.h"
 
 class Menu : public State
@@ -20,8 +19,7 @@ public:
 private: 
 	SDL_Texture* m_menuTexture;
 
-	Button m_exitBtn;
-	Button m_playBtn;
-
-	PopUp* m_popUp;
+	DrawableForMenu m_easy;
+	DrawableForMenu m_medium;
+	DrawableForMenu m_hard;
 };

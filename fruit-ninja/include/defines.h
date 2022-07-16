@@ -231,14 +231,25 @@ enum class HITBOX
 enum class FONT
 {
     NONE = 0,
-    ARCADE_CLASSIC = 1, // used in MonTu
-    ADVENT_PRO = 2 // used in Raven
+    ASSASIN = 1
+};
+
+enum class COLOR
+{
+    NONE = 0,
+    LIGHT = 1,
+    DARK = 2
 };
 
 struct Drawable
 {
     SDL_Texture* texture = nullptr;
     SDL_Rect rect = { 0 }; /// The rect where we draw
+};
+
+struct DrawableForMenu : public Drawable
+{
+    SDL_Texture* glowTexture = nullptr;
 };
 
 struct DrawableWithOpacity : public Drawable

@@ -19,6 +19,9 @@ public:
 private:
 	SDL_Texture* m_background;
 	
-	Button m_playBtn;
 	Button m_exitBtn;
+
+	Drawable m_scoreUI;
+
+	DrawableForMenu m_playAgain;
 };
