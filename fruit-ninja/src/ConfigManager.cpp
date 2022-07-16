@@ -40,6 +40,8 @@ void ConfigManager::loadFruits()
 	stream >> tmp;
 	m_splashSize.y = stoi(tmp);
 
+	Fruit bomb;
+
 	while (!stream.eof())
 	{
 		Fruit fruit;
@@ -53,8 +55,8 @@ void ConfigManager::loadFruits()
 			int splTime;
 			stream >> splSize.x >> splSize.y >> splTime;
 			SDL_Texture* textSpl = loadTexture(GAME_FOLDER + SPLASHES_FOLDER + name + "Splash.bmp");
-			fruit.initBomb(width, height, text, textSpl, splSize, splTime);
-			fruit.setRectHitBox();
+			bomb.initBomb(width, height, text, textSpl, splSize, splTime);
+			bomb.setRectHitBox();
 		}
 		else
 		{
@@ -84,9 +86,10 @@ void ConfigManager::loadFruits()
 				fruit.setOvalHitBox(c, r1, r2);
 				break;
 			}
+			m_allFruits.push_back(fruit);
 		}
-		m_allFruits.push_back(fruit);
 	}
+	m_allFruits.push_back(bomb);
 
 	stream.close();
 }
