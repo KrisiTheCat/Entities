@@ -172,7 +172,7 @@ void Board::updateFruits()
 
 					removeHeart();
 				}
-				else
+				else if (m_lives == 1)
 				{
 					removeHeart();
 				}
