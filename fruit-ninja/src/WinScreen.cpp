@@ -43,7 +43,7 @@ void WinScreen::run()
 	m_exitBtn.update();
 	m_exitBtn.draw();
 
-	auto score = getText(to_string(world.m_stateManager.m_game->m_board.m_score), FONT::ASSASIN, COLOR::DARK, 72);
+	auto score = getText(to_string(world.m_stateManager.m_game->m_board.m_score), FONT::ASSASIN, COLOR::LIGHT, 72);
 	m_scoreUI.texture = score.second;
 
 	m_scoreUI.rect = { 510, 105, score.first.x, score.first.y };

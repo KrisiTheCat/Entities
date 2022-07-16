@@ -40,6 +40,8 @@ private:
 
 	Drawable m_trail;
 
+	vector<Drawable> m_trails;
+
 	Drawable m_scoreUI;
 	
 	Drawable m_fruitScore;

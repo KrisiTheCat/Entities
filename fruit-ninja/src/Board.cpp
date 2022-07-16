@@ -102,7 +102,7 @@ void Board::draw()
 
 	drawHearts();
 
-	auto score = getText(to_string(m_score), FONT::ASSASIN, COLOR::DARK, 72);
+	auto score = getText(to_string(m_score), FONT::ASSASIN, COLOR::LIGHT, 72);
 	m_scoreUI.texture = score.second;
 		
 	m_scoreUI.rect = {170, 40, score.first.x, score.first.y};
@@ -117,12 +117,21 @@ void Board::drawFruits()
 		m_fruits.at(i).draw();
 	}
 	
-	if (InputManager::m_drag)
+	if (InputManager::m_drag && m_trails.size() < 15)
 	{
 		m_trail.rect.x = InputManager::m_mouseCoor.x - 15;
 		m_trail.rect.y = InputManager::m_mouseCoor.y - 15;
-		
-		drawObject(m_trail);
+
+		m_trails.push_back(m_trail);
+
+		for (int i = 0; i < m_trails.size(); i++)
+		{
+			drawObject(m_trails[i]);
+		}
+	}
+	else
+	{
+		m_trails.clear();
 	}
 }
 

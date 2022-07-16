@@ -22,4 +22,6 @@ private:
 	DrawableForMenu m_easy;
 	DrawableForMenu m_medium;
 	DrawableForMenu m_hard;
+
+	Button m_exitBtn;
 };
