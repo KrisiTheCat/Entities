@@ -212,6 +212,7 @@
     <ClCompile Include="src\ConfigManager.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Fruit.cpp" />
+    <ClCompile Include="src\FruitSlice.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -232,6 +233,7 @@
     <ClInclude Include="include\defines.h" />
     <ClInclude Include="include\Engine.h" />
     <ClInclude Include="include\Fruit.h" />
+    <ClInclude Include="include\FruitSlice.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\InputManager.h" />
     <ClInclude Include="include\Menu.h" />

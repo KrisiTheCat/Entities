@@ -14,16 +14,27 @@ public:
 	Board();
 	~Board();
 
-	void load();
+	void load(int bombRarity);
 
 	void update();
+
+	void initWave();
+
 	void draw();
 	
 	void destroy();
 
+	int m_score;
+
 private:
+	int m_lives;
+
 	int m_speed = 5;
 	int m_frameId = 0;
+
+	int m_bombRarity;
+
+	int m_timeBeforeNextWave = 0;
 	SDL_Texture* m_background;
 	
 	vector<Fruit> m_fruits;
@@ -41,7 +52,8 @@ private:
 	void loadHearts();
 
 	void updateFruits();
-	void drawFruits();
 
+	void drawFruits();
+	void drawFruitsSplashes();
 	void drawHearts();
 };

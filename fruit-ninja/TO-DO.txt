@@ -1,0 +1,7 @@
+Mine:
+
+Add all fruits to config (and rename some)
+Bombs & special fruits
+Time between fruits in wave
+
+Everything should go to itch.io

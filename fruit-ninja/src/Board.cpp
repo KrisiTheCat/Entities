@@ -1,5 +1,8 @@
 #include "Board.h"
+#include "World.h"
 #include "InputManager.h"
+
+extern World world;
 
 Board::Board()
 {
@@ -9,7 +12,8 @@ Board::~Board()
 {
 }
 
-void Board::load()
+
+void Board::load(int bombRarity)
 {
 	fstream stream;
 
@@ -33,11 +37,13 @@ void Board::load()
 
 	loadHearts();
 	
-	Fruit fruit;
-	SDL_Texture* text = loadTexture(GAME_FOLDER + FRUIT_FOLDER + "passionFruit.bmp");
+	/*Fruit fruit;
+	SDL_Texture* text = loadTexture(GAME_FOLDER + FRUITS_FOLDER + "passionFruit.bmp");
 	fruit.init(100, 100, text);
 	fruit.load(100, 1000);
-	m_fruits.push_back(fruit);
+	m_fruits.push_back(fruit);*/
+	m_bombRarity = bombRarity;
+	m_timeBeforeNextWave = 0;
 }
 
 void Board::loadHearts()
@@ -75,10 +81,14 @@ void Board::loadHearts()
 
 void Board::update()
 {
-	if(m_frameId == 0) { updateFruits(); }
+	if(m_frameId == 0)
+	{
+		if (m_timeBeforeNextWave == 0) initWave();
+		m_timeBeforeNextWave--;
+		updateFruits();
+	}
 	m_frameId++;
 	m_frameId %= m_speed;
-	
 }
 
 void Board::draw()
@@ -89,6 +99,8 @@ void Board::draw()
 
 	drawFruits();
 
+	drawFruitsSplashes();
+
 	drawHearts();
 }
 
@@ -96,7 +108,8 @@ void Board::drawFruits()
 {
 	for (int i = 0; i < m_fruits.size(); i++)
 	{
-		m_fruits.at(i).draw();
+		m_fruits.at(i).update();
+		if (m_fruits.at(i).m_outOfScreen) m_fruits.erase(m_fruits.begin() + i);
 	}
 	
 	if (InputManager::m_drag)
@@ -121,27 +134,42 @@ void Board::updateFruits()
 	for (int i = 0; i < m_fruits.size(); i++)
 	{
 		m_fruits.at(i).update();
-		
+
+		if (false) // BOMB
+		{
+			m_lives--;
+
+			m_hearts[m_lives].texture = m_deadTexture;
+
+			if (m_lives == 0)
+			{
+				world.m_stateManager.changeGameState(GAME_STATE::WIN_SCREEN);
+			}
+		}
+
 		switch (m_fruits[i].m_hitBoxType)
 		{
 		case 1: // rect
 			if (isMouseInRect(m_fruits[i].m_rectHitBox))
 			{
-				
+
+				m_score++;
 			}
 			break;
 		case 2: // triangle 
-			if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].m_triangleHitBox.a, 
-				m_fruits[i].m_triangleHitBox.b ,m_fruits[i].m_triangleHitBox.c))
+			if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].m_triangleHitBox.a,
+				m_fruits[i].m_triangleHitBox.b, m_fruits[i].m_triangleHitBox.c))
 			{
-				
+
+				m_score++;
 			}
 			break;
 		case 3: // circle
-			if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].m_circleHitBox.center, 
+			if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].m_circleHitBox.center,
 				m_fruits[i].m_circleHitBox.radius))
 			{
 
+				m_score++;
 			}
 			break;
 		case 4: // ellipse
@@ -149,11 +177,51 @@ void Board::updateFruits()
 				m_fruits[i].m_ovalHitBox.radius))
 			{
 
+				m_score++;
 			}
 			break;
 		default:
 			break;
 		}
+	}
+}
+
+void Board::initWave()
+{
+	int fruitsCount = world.m_config.m_fruitsInWave.x + (rand() % world.m_config.m_fruitsInWave.y);
+	int bombsSoFar = 0;
+	for (int i = 0; i < fruitsCount; i++)
+	{
+		int fruitId = rand() % (world.m_config.m_allFruits.size() - 1 + m_bombRarity);
+		if (fruitId >= world.m_config.m_allFruits.size()) fruitId = world.m_config.m_allFruits.size() - 1;
+		if (world.m_config.m_allFruits.at(fruitId).m_isBomb)
+		{
+			if (bombsSoFar < world.m_config.m_bombsInWave) bombsSoFar++;
+			else {
+				while (world.m_config.m_allFruits.at(fruitId).m_isBomb) {
+					fruitId = rand() % world.m_config.m_allFruits.size();
+					if (fruitId > world.m_config.m_allFruits.size()) fruitId = 0;
+				}
+			}
+		}
+		Fruit fruit = world.m_config.m_allFruits.at(fruitId);
+		int speedX = world.m_config.m_speedX.x + (rand() % world.m_config.m_speedX.y);
+		int speedY = world.m_config.m_speedY.x + (rand() % world.m_config.m_speedY.y);
+		int x = (rand() % world.m_config.m_width);
+		if (speedX < 0 && x < speedY * 2 * (-1) * speedX + 100) x = world.m_config.m_width - x;
+		if (speedX > 0 && x > world.m_config.m_width - speedY * 2 * speedX - 100) x = world.m_config.m_width - x;
+		int initAfter = world.m_config.m_fruitsInWave.x + (rand() % world.m_config.m_fruitsInWave.y);
+		fruit.load(initAfter, x, world.m_config.m_height, speedX, speedY, 20);
+		m_fruits.push_back(fruit);
+	}
+	m_timeBeforeNextWave = world.m_config.m_timeBetweenWaves.x + (rand() % world.m_config.m_timeBetweenWaves.y);
+}
+
+void Board::drawFruitsSplashes()
+{
+	for (int i = 0; i < m_fruits.size(); i++)
+	{
+		m_fruits.at(i).drawSplash();
 	}
 }
 

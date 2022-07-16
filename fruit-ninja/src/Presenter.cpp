@@ -89,6 +89,27 @@ void Presenter::drawObject(Drawable& drawable)
 void Presenter::drawObject(DrawableWithOpacity& drawable)
 {
     SDL_SetTextureAlphaMod(drawable.texture, drawable.opacity);
-	
+
     SDL_RenderCopy(m_main_renderer, drawable.texture, NULL, &drawable.rect);
 }
+
+
+
+void Presenter::drawObjectRotated(SDL_Texture* texture, Rotatable rotate)
+{
+    SDL_RenderCopyEx(m_main_renderer, texture, NULL, NULL, rotate.angle, NULL, rotate.flip);
+}
+
+void Presenter::drawObjectRotated(Drawable& drawable, Rotatable rotate)
+{
+    SDL_RenderCopyEx(m_main_renderer, drawable.texture, NULL, &drawable.rect, rotate.angle, NULL, rotate.flip);
+}
+
+void Presenter::drawObjectRotated(DrawableWithOpacity& drawable, Rotatable rotate)
+{
+    SDL_SetTextureAlphaMod(drawable.texture, drawable.opacity);
+	
+    SDL_RenderCopyEx(m_main_renderer, drawable.texture, NULL, &drawable.rect, rotate.angle, NULL, rotate.flip);
+}
+
+//SDL_RenderCopyEx(renderer, texture, &srcrect, &dstrect, angle, &center, flip);
