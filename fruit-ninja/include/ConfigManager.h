@@ -15,6 +15,8 @@ public:
 	void load();
 	void loadFruits();
 
+	int inputIntFromFile();
+
 	int2 m_splashSize;
 	int2 m_fruitsInWave;
 	int2 m_timeBetweenWaves;

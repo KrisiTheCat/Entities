@@ -15,9 +15,9 @@ void ConfigManager::load()
 	loadFruits();
 }
 
+fstream stream;
 void ConfigManager::loadFruits()
 {
-	fstream stream;
 	string tmp;
 
 	stream.open(CONFIG_FOLDER + GAME_FOLDER + "wave.txt");
@@ -74,15 +74,25 @@ void ConfigManager::loadFruits()
 				fruit.setRectHitBox();
 				break;
 			case 2:
-				cin >> a.x >> a.y >> b.x >> b.y >> c.x >> c.y;
+				a.x = inputIntFromFile();
+				a.y = inputIntFromFile();
+				b.x = inputIntFromFile();
+				b.y = inputIntFromFile();
+				c.x = inputIntFromFile();
+				c.y = inputIntFromFile();
 				fruit.setTriangleHitBox(a, b, c);
 				break;
 			case 3:
-				cin >> c.x >> c.y >> r;
+				c.x = inputIntFromFile();
+				c.y = inputIntFromFile();
+				r = inputIntFromFile();
 				fruit.setCircleHitBox(c, r);
 				break;
 			case 4:
-				cin >> c.x >> c.y >> r1 >> r2;
+				c.x = inputIntFromFile();
+				c.y = inputIntFromFile();
+				r1 = inputIntFromFile();
+				r2 = inputIntFromFile();
 				fruit.setOvalHitBox(c, r1, r2);
 				break;
 			}
@@ -92,5 +102,12 @@ void ConfigManager::loadFruits()
 	m_allFruits.push_back(bomb);
 
 	stream.close();
+}
+
+int ConfigManager::inputIntFromFile()
+{
+	string tmp;
+	stream >> tmp;
+	return stoi(tmp);
 }
 

@@ -18,7 +18,7 @@ public:
 
 	void initBomb(int width, int height, SDL_Texture* texture, SDL_Texture* splashTexture, int2 splashSize, int splashTime);
 	void init(int width, int height, int cutWidth, int cutHeight, int slicesNumber, SDL_Texture* texture, SDL_Texture* textureCut, SDL_Texture* splashTexture, int2 splashSize, int splashTime);
-	void load(int initAfter, int x, int y, int speedX, int speedY, int rotateSpeed);
+	void load(int initAfter, int x, int y, int speedX, int speedY);
 
 	void setRectHitBox();
 	SDL_Rect getRectHitBox();

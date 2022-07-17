@@ -34,7 +34,7 @@ public:
 
 private:
 
-	int m_speed = 3;
+	int m_speed = 2;
 	int m_frameId = 0;
 
 	int m_timeBeforeNextWave = 0;

@@ -282,16 +282,14 @@ void Board::initWave()
 		int speedX = world.m_config.m_speedX.x + (rand() % world.m_config.m_speedX.y);
 		int speedY = world.m_config.m_speedY.x + (rand() % world.m_config.m_speedY.y);
 		
-		int x = (rand() % world.m_config.m_width);
+		int x = 100 + (rand() % (world.m_config.m_width - 200));
 		
-		if (speedX < 0 && x < speedY * 2 * (-1) * speedX + 100) 
-			x = world.m_config.m_width - x;
-		
-		if (speedX > 0 && x > world.m_config.m_width - speedY * 2 * speedX - 100) 
-			x = world.m_config.m_width - x;
+		while (speedX < 0 && x < speedY * 2 * (-1) * speedX + 100) speedX++;
+		while (speedX > 0 && x > world.m_config.m_width - speedY * 2 * speedX - 100) speedX--;
+
 		int initAfter = world.m_config.m_fruitsInWave.x + (rand() % world.m_config.m_fruitsInWave.y);
 		
-		fruit.load(initAfter, x, world.m_config.m_height, speedX, speedY, 20);
+		fruit.load(initAfter, x, world.m_config.m_height, speedX, speedY);
 		
 		m_fruits.push_back(fruit);
 	}

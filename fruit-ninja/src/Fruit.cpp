@@ -45,7 +45,7 @@ void Fruit::init(int width, int height, int cutWidth, int cutHeight, int slicesN
 	m_splashTime = splashTime;
 }
 
-void Fruit::load(int initAfter, int x, int y, int speedX, int speedY, int rotateSpeed)
+void Fruit::load(int initAfter, int x, int y, int speedX, int speedY)
 {
 	m_drawable.rect.x = x;
 	m_drawable.rect.y = y;
