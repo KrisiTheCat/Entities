@@ -1,16 +1,16 @@
 splashSize: 300 300
-banana 200 200 150 150 2 yellow 2 159 0 200 200 8 181
-dragonFruit 150 308 308 308 2 creme 4 100 283 100 162
-eggplant 186 200 200 200 2 creme 3 93 123 93
-fig 200 200 200 200 2 creme 3 100 100 100
-grapefruit 200 200 200 200 2 orange 3 100 100 100
-kiwi 141 200 180 180 2 green 4 70 100 70 100
-lime 200 200 180 180 2 green 4 100 100 75 100
-mango 201 300 200 200 2 yellow 4 73 122 65 97
-papaya 135 200 200 200 2 orange 4 67 100 67 100
-passionFruit 200 280 200 200 2 purple 3 71 135 71
-pineapple 150 319 150 150 8 yellow 1
-plum 200 200 180 180 2 creme 3 100 131 84
-pomegranate 200 241 241 241 4 red 3 83 129 83
-walnut 200 234 200 200 2 creme 3 100 91 66
+banana 200 200 150 150 2 yellow
+dragonFruit 150 308 308 308 2 creme
+eggplant 186 200 200 200 2 creme
+fig 200 200 200 200 2 creme
+grapefruit 200 200 200 200 2 orange
+kiwi 141 200 180 180 2 green
+lime 200 200 180 180 2 green
+mango 201 300 200 200 2 yellow
+papaya 135 200 200 200 2 orange
+passionFruit 200 280 200 200 2 purple
+pineapple 150 319 150 150 8 yellow
+plum 200 200 180 180 2 creme
+pomegranate 200 241 241 241 4 red
+walnut 200 234 200 200 2 creme
 bomb 167 200 507 350 400

@@ -56,7 +56,7 @@ void ConfigManager::loadFruits()
 			stream >> splSize.x >> splSize.y >> splTime;
 			SDL_Texture* textSpl = loadTexture(GAME_FOLDER + SPLASHES_FOLDER + name + "Splash.bmp");
 			bomb.initBomb(width, height, text, textSpl, splSize, splTime);
-			bomb.setRectHitBox();
+			bomb.setHitBox();
 		}
 		else
 		{
@@ -64,38 +64,7 @@ void ConfigManager::loadFruits()
 			SDL_Texture* textCut = loadTexture(GAME_FOLDER + FRUITS_FOLDER + name + "_cut.bmp");
 			SDL_Texture* textSpl = loadTexture(GAME_FOLDER + SPLASHES_FOLDER + splash + "Splash.bmp");
 			fruit.init(width, height, widthCut, heightCut, slices, text, textCut, textSpl, m_splashSize, m_splashTime);
-			int hitboxType;
-			stream >> hitboxType;
-			int2 p, a, b, c;
-			int r, r1, r2;
-			switch (hitboxType)
-			{
-			case 1:
-				fruit.setRectHitBox();
-				break;
-			case 2:
-				a.x = inputIntFromFile();
-				a.y = inputIntFromFile();
-				b.x = inputIntFromFile();
-				b.y = inputIntFromFile();
-				c.x = inputIntFromFile();
-				c.y = inputIntFromFile();
-				fruit.setTriangleHitBox(a, b, c);
-				break;
-			case 3:
-				c.x = inputIntFromFile();
-				c.y = inputIntFromFile();
-				r = inputIntFromFile();
-				fruit.setCircleHitBox(c, r);
-				break;
-			case 4:
-				c.x = inputIntFromFile();
-				c.y = inputIntFromFile();
-				r1 = inputIntFromFile();
-				r2 = inputIntFromFile();
-				fruit.setOvalHitBox(c, r1, r2);
-				break;
-			}
+			fruit.setHitBox();
 			m_allFruits.push_back(fruit);
 		}
 	}

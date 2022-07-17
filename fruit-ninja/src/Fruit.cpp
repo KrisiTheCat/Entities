@@ -61,67 +61,16 @@ void Fruit::load(int initAfter, int x, int y, int speedX, int speedY)
 }
 
 
-void Fruit::setRectHitBox()
+void Fruit::setHitBox()
 {
-	m_hitBoxType = 1;
-	m_rectHitBox = m_drawable.rect;
+	m_hitBox = m_drawable.rect;
 }
 
-SDL_Rect Fruit::getRectHitBox()
+SDL_Rect Fruit::getHitBox()
 {
-	SDL_Rect hitbox = m_rectHitBox;
+	SDL_Rect hitbox = m_hitBox;
 	hitbox.x += m_drawable.rect.x;
 	hitbox.y += m_drawable.rect.y;
-	return hitbox;
-}
-
-void Fruit::setTriangleHitBox(int2 a, int2 b, int2 c)
-{
-	m_hitBoxType = 2;
-	m_triangleHitBox.a = a;
-	m_triangleHitBox.b = b;
-	m_triangleHitBox.c = c;
-}
-
-TriangleHitBox Fruit::getTriangleHitBox()
-{
-	TriangleHitBox hitbox = m_triangleHitBox;
-	hitbox.a.x += m_drawable.rect.x;
-	hitbox.a.y += m_drawable.rect.y;
-	hitbox.b.x += m_drawable.rect.x;
-	hitbox.b.y += m_drawable.rect.y;
-	hitbox.c.x += m_drawable.rect.x;
-	hitbox.c.y += m_drawable.rect.y;
-	return hitbox;
-}
-
-void Fruit::setCircleHitBox(int2 center, int r)
-{
-	m_hitBoxType = 3;
-	m_circleHitBox.center = center;
-	m_circleHitBox.radius = r;
-}
-
-CircleHitBox Fruit::getCircleHitBox()
-{
-	CircleHitBox hitbox = m_circleHitBox;
-	hitbox.center.x += m_drawable.rect.x;
-	hitbox.center.y += m_drawable.rect.y;
-	return hitbox;
-}
-
-void Fruit::setOvalHitBox(int2 center, int r1, int r2)
-{
-	m_hitBoxType = 4;
-	m_ovalHitBox.radius.x = r1;
-	m_ovalHitBox.radius.y = r2;
-}
-
-OvalHitBox Fruit::getOvalHitBox()
-{
-	OvalHitBox hitbox = m_ovalHitBox;
-	hitbox.center.x += m_drawable.rect.x;
-	hitbox.center.y += m_drawable.rect.y;
 	return hitbox;
 }
 
@@ -201,22 +150,6 @@ void Fruit::cut()
 		m_slices.at(i).load(m_drawable.rect.x, m_drawable.rect.y,
 			spX, spY);
 	}
-	switch (m_hitBoxType)
-	{
-	case 1:
-		m_rectHitBox.w = 0;
-		m_rectHitBox.h = 0;
-		break;
-	case 2:
-		m_triangleHitBox.reset();
-		break;
-	case 3:
-		m_circleHitBox.reset();
-		break;
-	case 4:
-		m_ovalHitBox.reset();
-		break;
-	default:
-		break;
-	}
+	m_hitBox.w = 0;
+	m_hitBox.h = 0;
 }

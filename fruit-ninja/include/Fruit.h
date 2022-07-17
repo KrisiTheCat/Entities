@@ -20,14 +20,8 @@ public:
 	void init(int width, int height, int cutWidth, int cutHeight, int slicesNumber, SDL_Texture* texture, SDL_Texture* textureCut, SDL_Texture* splashTexture, int2 splashSize, int splashTime);
 	void load(int initAfter, int x, int y, int speedX, int speedY);
 
-	void setRectHitBox();
-	SDL_Rect getRectHitBox();
-	void setTriangleHitBox(int2 a, int2 b, int2 c);
-	TriangleHitBox getTriangleHitBox();
-	void setCircleHitBox(int2 center, int r);
-	CircleHitBox getCircleHitBox();
-	void setOvalHitBox(int2 center, int r1, int r2);
-	OvalHitBox getOvalHitBox();
+	void setHitBox();
+	SDL_Rect getHitBox();
 
 	void update();
 	void draw();
@@ -35,12 +29,6 @@ public:
 	void cut();
 
 	int m_id = 0;
-	int m_hitBoxType;
-	
-	SDL_Rect m_rectHitBox;
-	TriangleHitBox m_triangleHitBox;
-	CircleHitBox m_circleHitBox;
-	OvalHitBox m_ovalHitBox;
 
 	bool m_isCut;
 	bool m_isBomb;
@@ -51,6 +39,8 @@ private:
 	DrawableWithOpacity m_splash;
 	Rotatable m_rotatable;
 	vector<FruitSlice> m_slices;
+
+	SDL_Rect m_hitBox;
 
 	int m_initAfter;
 	int m_splashTime;

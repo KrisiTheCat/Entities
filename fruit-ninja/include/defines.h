@@ -194,41 +194,6 @@ struct float2
     }
 };
 
-struct CircleHitBox
-{
-    int2 center;
-    int radius;
-    void reset()
-    {
-        center = { 0,0 };
-        radius = 0;
-    }
-};
-
-struct OvalHitBox
-{
-    int2 center;
-    int2 radius;
-    void reset()
-    {
-        center = { 0,0 };
-        radius = { 0,0 };
-    }
-};
-
-struct TriangleHitBox
-{
-    int2 a;
-    int2 b;
-    int2 c;
-    void reset()
-    {
-        a = { 0,0 };
-        b = { 0,0 };
-        c = { 0,0 };
-    }
-};
-
 enum class HITBOX
 {
     NONE = 0,

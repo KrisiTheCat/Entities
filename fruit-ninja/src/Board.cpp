@@ -164,7 +164,7 @@ void Board::updateFruits()
 		
 		if (InputManager::m_drag)
 		{
-			if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getRectHitBox()))
+			if (m_fruits.at(i).m_isBomb && isMouseInRect(m_fruits[i].getHitBox()))
 			{
 				if (m_lives > 1)
 				{
@@ -178,56 +178,14 @@ void Board::updateFruits()
 				}
 			}
 
-			switch (m_fruits[i].m_hitBoxType)
+			if (isMouseInRect(m_fruits[i].getHitBox()))
 			{
-			case 1: // rect
-				if (isMouseInRect(m_fruits[i].getRectHitBox()))
+				m_fruits.at(i).cut();	
+				if (!m_fruits[i].m_isBomb)
 				{
-					m_fruits.at(i).cut();
-					
-					if (!m_fruits[i].m_isBomb)
-					{
-						world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
-						
-						m_score++;
-					}
-				}
-				break;
-			case 2: // triangle 
-				if (MouseIsInTriangle(InputManager::m_mouseCoor, m_fruits[i].getTriangleHitBox().a,
-					m_fruits[i].getTriangleHitBox().b, m_fruits[i].getTriangleHitBox().c))
-				{
-					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
-					
-					m_fruits.at(i).cut();
-					
+					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);				
 					m_score++;
 				}
-				break;
-			case 3: // circle
-				if (MouseIsInCircle(InputManager::m_mouseCoor, m_fruits[i].getCircleHitBox().center,
-					m_fruits[i].getCircleHitBox().radius))
-				{
-					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
-					
-					m_fruits.at(i).cut();
-					
-					m_score++;
-				}
-				break;
-			case 4: // ellipse
-				if (MouseIsInEllipse(InputManager::m_mouseCoor, m_fruits[i].getOvalHitBox().center,
-					m_fruits[i].getOvalHitBox().radius))
-				{
-					world.m_soundManager.playSound(SOUND::SLICE_MUSIC);
-
-					m_fruits.at(i).cut();
-					
-					m_score++;
-				}
-				break;
-			default:
-				break;
 			}
 		}
 	}
