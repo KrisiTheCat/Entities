@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Game.h"
-#include "TitleScreen.h"
-#include "Menu.h"
-#include "WinScreen.h"
 
 enum class GAME_STATE
 {
@@ -30,9 +27,6 @@ public:
 	GAME_STATE m_gameState;
 
 	Game* m_game;
-	TitleScreen* m_titleScreen;
-	Menu* m_menu;
-	WinScreen* m_winScreen;
 	
 	State* m_currState;
 	

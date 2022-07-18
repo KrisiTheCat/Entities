@@ -42,16 +42,7 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>src\STATES</Filter>
     </ClCompile>
-    <ClCompile Include="src\Menu.cpp">
-      <Filter>src\STATES</Filter>
-    </ClCompile>
     <ClCompile Include="src\StateManager.cpp">
-      <Filter>src\STATES</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TitleScreen.cpp">
-      <Filter>src\STATES</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WinScreen.cpp">
       <Filter>src\STATES</Filter>
     </ClCompile>
     <ClCompile Include="src\State.cpp">
@@ -61,6 +52,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Writer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Unit.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Reamor.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,25 +89,22 @@
     <ClInclude Include="include\Game.h">
       <Filter>include\STATES</Filter>
     </ClInclude>
-    <ClInclude Include="include\Menu.h">
-      <Filter>include\STATES</Filter>
-    </ClInclude>
     <ClInclude Include="include\StateManager.h">
       <Filter>include\STATES</Filter>
     </ClInclude>
     <ClInclude Include="include\State.h">
       <Filter>include\STATES</Filter>
     </ClInclude>
-    <ClInclude Include="include\TitleScreen.h">
-      <Filter>include\STATES</Filter>
-    </ClInclude>
-    <ClInclude Include="include\WinScreen.h">
-      <Filter>include\STATES</Filter>
-    </ClInclude>
     <ClInclude Include="include\Board.h">
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Writer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Unit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Reamor.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

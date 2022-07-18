@@ -214,13 +214,12 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Menu.cpp" />
     <ClCompile Include="src\Presenter.cpp" />
+    <ClCompile Include="src\Reamor.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
-    <ClCompile Include="src\TitleScreen.cpp" />
-    <ClCompile Include="src\WinScreen.cpp" />
+    <ClCompile Include="src\Unit.cpp" />
     <ClCompile Include="src\World.cpp" />
     <ClCompile Include="src\Writer.cpp" />
   </ItemGroup>
@@ -232,13 +231,12 @@
     <ClInclude Include="include\Engine.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\InputManager.h" />
-    <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Presenter.h" />
+    <ClInclude Include="include\Reamor.h" />
     <ClInclude Include="include\SoundManager.h" />
     <ClInclude Include="include\State.h" />
     <ClInclude Include="include\StateManager.h" />
-    <ClInclude Include="include\TitleScreen.h" />
-    <ClInclude Include="include\WinScreen.h" />
+    <ClInclude Include="include\Unit.h" />
     <ClInclude Include="include\World.h" />
     <ClInclude Include="include\Writer.h" />
   </ItemGroup>

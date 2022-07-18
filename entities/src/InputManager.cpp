@@ -3,6 +3,10 @@
 
 bool InputManager::m_drag = bool();
 bool InputManager::m_mouseIsPressed = bool();
+bool InputManager::m_keyUpPressed = bool();
+bool InputManager::m_keyDownPressed = bool();
+bool InputManager::m_keyLeftPressed = bool();
+bool InputManager::m_keyRightPressed = bool();
 bool InputManager::m_mouseIsDoubleClicked = bool();
 bool InputManager::m_mouseOnClick = bool();
 bool InputManager::m_mouseOnRelease = bool();
@@ -59,6 +63,10 @@ void InputManager::handleInput()
 {
     m_mouseIsPressed = false;
     m_mouseIsDoubleClicked = false;
+    m_keyUpPressed = false;
+    m_keyDownPressed = false;
+    m_keyLeftPressed = false;
+    m_keyRightPressed = false;
 
     SDL_SetEventFilter(&event_filter, (void*)this);
 	
@@ -80,6 +88,25 @@ void InputManager::handleInput()
             }
 
             break;
+        case SDL_KEYDOWN:
+            switch (m_event.key.keysym.sym)
+            {
+            case SDLK_UP:
+                m_keyUpPressed = true;
+                break;
+
+            case SDLK_DOWN:
+                m_keyDownPressed = true;
+                break;
+
+            case SDLK_LEFT:
+                m_keyLeftPressed = true;
+                break;
+
+            case SDLK_RIGHT:
+                m_keyRightPressed = true;
+                break;
+            }
         }
     }
 	
@@ -128,6 +155,27 @@ bool InputManager::mouseIsHolded()
     return m_mouseIsHolded;
 }
 
+bool InputManager::keyUpIsDown()
+{
+    
+    return m_keyUpPressed;
+}
+
+bool InputManager::keyDownIsDown()
+{
+    return m_keyDownPressed;
+}
+
+bool InputManager::keyLeftIsDown()
+{
+    return m_keyLeftPressed;
+}
+
+bool InputManager::keyRightIsDown()
+{
+    return m_keyRightPressed;
+}
+
 bool isMouseInRect(SDL_Rect rect)
 {
     return MouseIsInRect(InputManager::m_mouseCoor, rect);
@@ -150,4 +198,24 @@ bool isAnyKeyPressed()
         }
     }
     return false;
+}
+
+bool keyUpIsDown()
+{
+    return InputManager::keyUpIsDown();
+}
+
+bool keyDownIsDown()
+{
+    return InputManager::keyDownIsDown();
+}
+
+bool keyLeftIsDown()
+{
+    return InputManager::keyLeftIsDown();
+}
+
+bool keyRightIsDown()
+{
+    return InputManager::keyRightIsDown();
 }
