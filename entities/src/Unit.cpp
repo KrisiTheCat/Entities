@@ -9,12 +9,16 @@ Unit::~Unit()
 {
 }
 
-void Unit::init(SDL_Texture* texture, int width, int height, int health)
+void Unit::init(int id, SDL_Texture* texture, int width, int height, int health, int x, int y, int speed)
 {
 	m_drawable.texture = texture;
+	m_drawable.rect.x = x;
+	m_drawable.rect.y = y;
 	m_drawable.rect.w = width;
 	m_drawable.rect.h = height;
 	m_health = health;
+	m_id = id;
+	m_speed = speed;
 }
 
 void Unit::load(int x, int y)
@@ -25,17 +29,7 @@ void Unit::load(int x, int y)
 
 void Unit::update()
 {
-	if (m_isMoving)
-	{
-		if (m_moveDest.x < m_drawable.rect.x)
-			m_drawable.rect.x -= min(m_drawable.rect.x - m_moveDest.x, m_speed);
-		if (m_moveDest.x > m_drawable.rect.x)
-			m_drawable.rect.x += min(m_moveDest.x - m_drawable.rect.x, m_speed);
-		if (m_moveDest.y < m_drawable.rect.y)
-			m_drawable.rect.y -= min(m_drawable.rect.y - m_moveDest.y, m_speed);
-		if (m_moveDest.y > m_drawable.rect.y)
-			m_drawable.rect.y += min(m_moveDest.y - m_drawable.rect.y, m_speed);
-	}
+	
 }
 
 void Unit::draw()
@@ -47,8 +41,15 @@ void Unit::destroy()
 {
 }
 
-void Unit::move(int x, int y)
+int2 Unit::getPos()
 {
-	m_moveDest.x = x;
-	m_moveDest.y = y;
+	int2 a;
+	a.x = m_drawable.rect.x;
+	a.y = m_drawable.rect.y;
+	return a;
+}
+
+int Unit::getSpeed()
+{
+	return m_speed;
 }

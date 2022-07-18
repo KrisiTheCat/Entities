@@ -11,14 +11,40 @@ Board::~Board()
 {
 }
 
+int2 Board::getUnitPos(int id)
+{
+	for (int i = 0; i < m_reamors.size(); i++)
+	{
+		if (m_reamors.at(i).m_id == id)
+		{
+			return m_reamors.at(i).getPos();
+		}
+	}
+}
 
 void Board::init()
 {
 	m_background = loadTexture(GAME_FOLDER + "background.bmp");
+
 	Reamor me;
 	SDL_Texture* text = loadTexture(GAME_FOLDER + "me.bmp");
-	me.init(text, 118, 102, 100);
+	me.init(0, text, 118, 102, 100, 900, 900, 10);
 	m_reamors.push_back(me);
+
+	/*Bullet bullet;
+	text = loadTexture(GAME_FOLDER + "bullet.bmp");
+	bullet.init(0, text, 900, 900, 50, 50);
+	m_bullets.push_back(bullet);*/
+
+	Entity ent;
+	text = loadTexture(GAME_FOLDER + "enemyHostile1.bmp");
+	ent.init(1, text, 94, 127, 100, 100, 100, 3);
+	m_entities.push_back(ent);
+
+	Behavior beh;
+	beh.init(BEHAVIOR_TYPE::HOSTILE, &m_entities.at(0), &m_reamors.at(0));
+	m_behaviors.push_back(beh);
+
 }
 
 void Board::update()
@@ -29,6 +55,8 @@ void Board::update()
 	if (keyRightIsDown()) m_reamors.at(0).moveRight();
 	updateEntities();
 	updateReamors();
+	updateBullets();
+	updateBehaviors();
 }
 
 void Board::draw()
@@ -36,6 +64,7 @@ void Board::draw()
 	drawObject(m_background);
 	drawReamors();
 	drawEntities();
+	drawBullets();
 }
 
 void Board::destroy()
@@ -53,9 +82,25 @@ void Board::updateReamors()
 
 void Board::updateEntities()
 {
-	for (int i = 0; i < m_reamors.size(); i++)
+	for (int i = 0; i < m_entities.size(); i++)
 	{
-		m_reamors.at(i).update();
+		m_entities.at(i).update();
+	}
+}
+
+void Board::updateBehaviors()
+{
+	for (int i = 0; i < m_behaviors.size(); i++)
+	{
+		m_behaviors.at(i).update();
+	}
+}
+
+void Board::updateBullets()
+{
+	for (int i = 0; i < m_bullets.size(); i++)
+	{
+		m_bullets.at(i).update(getUnitPos(m_bullets.at(i).unitId()));
 	}
 }
 
@@ -69,8 +114,16 @@ void Board::drawReamors()
 
 void Board::drawEntities()
 {
-	for (int i = 0; i < m_reamors.size(); i++)
+	for (int i = 0; i < m_entities.size(); i++)
 	{
-		m_reamors.at(i).draw();
+		m_entities.at(i).draw();
+	}
+}
+
+void Board::drawBullets()
+{
+	for (int i = 0; i < m_bullets.size(); i++)
+	{
+		m_bullets.at(i).draw();
 	}
 }

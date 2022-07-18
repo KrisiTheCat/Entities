@@ -216,6 +216,19 @@ enum class COLOR
     DARK = 2
 };
 
+enum class BEHAVIOR_TYPE
+{
+    NONE = 0,
+    HOSTILE = 1,
+    FRIENDLY = 2
+};
+
+enum class MOVING_STATE
+{
+    NONE = 0,
+    CHASE = 1
+};
+
 struct Drawable
 {
     SDL_Texture* texture = nullptr;

@@ -60,6 +60,18 @@
     <ClCompile Include="src\Reamor.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Entity.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bullet.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Behavior.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ChaseState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\World.h">
@@ -105,6 +117,18 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Reamor.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Entity.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Bullet.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Behavior.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ChaseState.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

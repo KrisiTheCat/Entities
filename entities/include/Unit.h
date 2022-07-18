@@ -9,7 +9,7 @@ public:
 	Unit();
 	~Unit();
 
-	void init(SDL_Texture* texture, int width, int height, int health);
+	void init(int id, SDL_Texture* texture, int width, int height, int health, int x, int y, int speed);
 
 	void load(int x, int y);
 
@@ -19,12 +19,12 @@ public:
 	
 	void destroy();
 
-	void move(int x, int y);
+	int2 getPos();
+	int getSpeed();
+	int m_id;
 
 protected:
 	int m_health;
-	int2 m_moveDest;
-	bool m_isMoving = false;
-	int m_speed = 5;
+	int m_speed;
 	Drawable m_drawable;
 };
