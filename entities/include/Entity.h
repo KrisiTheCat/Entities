@@ -10,7 +10,7 @@ public:
 	Entity();
 	~Entity();
 
-	void update();
+	void updateEntity();
 	void move(int2 a);
 
 private:

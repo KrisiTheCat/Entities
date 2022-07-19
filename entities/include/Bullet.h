@@ -14,10 +14,9 @@ public:
 	void update(int2 a);
 
 	void draw();
-	int unitId();
 
+	bool m_hasReachedTarget;
 private:
 	int m_speed = 5;
-	int m_unitId;
 	Drawable m_drawable;
 };

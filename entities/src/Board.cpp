@@ -31,11 +31,6 @@ void Board::init()
 	me.init(0, text, 118, 102, 100, 900, 900, 10);
 	m_reamors.push_back(me);
 
-	/*Bullet bullet;
-	text = loadTexture(GAME_FOLDER + "bullet.bmp");
-	bullet.init(0, text, 900, 900, 50, 50);
-	m_bullets.push_back(bullet);*/
-
 	Entity ent;
 	text = loadTexture(GAME_FOLDER + "enemyHostile1.bmp");
 	ent.init(1, text, 94, 127, 100, 100, 100, 3);
@@ -55,7 +50,6 @@ void Board::update()
 	if (keyRightIsDown()) m_reamors.at(0).moveRight();
 	updateEntities();
 	updateReamors();
-	updateBullets();
 	updateBehaviors();
 }
 
@@ -64,7 +58,6 @@ void Board::draw()
 	drawObject(m_background);
 	drawReamors();
 	drawEntities();
-	drawBullets();
 }
 
 void Board::destroy()
@@ -84,6 +77,7 @@ void Board::updateEntities()
 {
 	for (int i = 0; i < m_entities.size(); i++)
 	{
+		m_entities.at(i).updateEntity();
 		m_entities.at(i).update();
 	}
 }
@@ -93,14 +87,6 @@ void Board::updateBehaviors()
 	for (int i = 0; i < m_behaviors.size(); i++)
 	{
 		m_behaviors.at(i).update();
-	}
-}
-
-void Board::updateBullets()
-{
-	for (int i = 0; i < m_bullets.size(); i++)
-	{
-		m_bullets.at(i).update(getUnitPos(m_bullets.at(i).unitId()));
 	}
 }
 
@@ -117,13 +103,5 @@ void Board::drawEntities()
 	for (int i = 0; i < m_entities.size(); i++)
 	{
 		m_entities.at(i).draw();
-	}
-}
-
-void Board::drawBullets()
-{
-	for (int i = 0; i < m_bullets.size(); i++)
-	{
-		m_bullets.at(i).draw();
 	}
 }

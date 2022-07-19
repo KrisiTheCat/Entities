@@ -207,6 +207,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Attack.cpp" />
     <ClCompile Include="src\Behavior.cpp" />
     <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
@@ -218,6 +219,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MovingState.cpp" />
     <ClCompile Include="src\Presenter.cpp" />
     <ClCompile Include="src\Reamor.cpp" />
     <ClCompile Include="src\SoundManager.cpp" />
@@ -228,6 +230,7 @@
     <ClCompile Include="src\Writer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Attack.h" />
     <ClInclude Include="include\Behavior.h" />
     <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\Bullet.h" />
@@ -239,6 +242,7 @@
     <ClInclude Include="include\Entity.h" />
     <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\InputManager.h" />
+    <ClInclude Include="include\MovingState.h" />
     <ClInclude Include="include\Presenter.h" />
     <ClInclude Include="include\Reamor.h" />
     <ClInclude Include="include\SoundManager.h" />

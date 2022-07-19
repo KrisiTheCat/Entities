@@ -223,6 +223,12 @@ enum class BEHAVIOR_TYPE
     FRIENDLY = 2
 };
 
+enum class ATTACKING_STATE
+{
+    NONE = 0,
+    ATTACK = 1
+};
+
 enum class MOVING_STATE
 {
     NONE = 0,

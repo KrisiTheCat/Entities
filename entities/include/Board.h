@@ -6,7 +6,6 @@
 #include "Presenter.h"
 #include "Reamor.h"
 #include "Behavior.h"
-#include "Bullet.h"
 #include "Entity.h"
 #include "defines.h"
 
@@ -25,6 +24,7 @@ public:
 	void destroy();
 
 	int2 getUnitPos(int id);
+	void createBullet();
 
 
 private:
@@ -32,15 +32,12 @@ private:
 	vector<Reamor> m_reamors;
 	vector<Entity> m_entities;
 	vector<Behavior> m_behaviors;
-	vector<Bullet> m_bullets;
 	SDL_Texture* m_background;
 
 	void updateReamors();
 	void updateEntities();
-	void updateBullets();
 	void updateBehaviors();
 
 	void drawReamors();
 	void drawEntities();
-	void drawBullets();
 };

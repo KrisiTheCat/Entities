@@ -30,11 +30,21 @@ void Unit::load(int x, int y)
 void Unit::update()
 {
 	
+	updateBullets();
 }
 
 void Unit::draw()
 {
 	drawObject(m_drawable);
+	drawBullets();
+}
+
+void Unit::attack(Unit* target)
+{
+	Bullet bullet;
+	SDL_Texture* text = loadTexture(GAME_FOLDER + "bullet.bmp");
+	bullet.init(0, text, m_drawable.rect.x, m_drawable.rect.y, 50, 50);
+	m_bullets.push_back(make_pair(target, bullet));
 }
 
 void Unit::destroy()
@@ -52,4 +62,22 @@ int2 Unit::getPos()
 int Unit::getSpeed()
 {
 	return m_speed;
+}
+
+void Unit::drawBullets()
+{
+	for (int i = 0; i < m_bullets.size(); i++)
+	{
+		m_bullets.at(i).second.draw();
+	}
+}
+
+void Unit::updateBullets()
+{
+	cout << "updateBullets in Unit" << endl;
+	for (int i = 0; i < m_bullets.size(); i++)
+	{
+		m_bullets.at(i).second.update(m_bullets.at(i).first->getPos());
+		cout << "79: " << m_bullets.at(i).first->getPos().x << " " << m_bullets.at(i).first->getPos().y << endl;
+	}
 }

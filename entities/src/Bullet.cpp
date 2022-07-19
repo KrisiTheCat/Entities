@@ -10,12 +10,12 @@ Bullet::~Bullet()
 
 void Bullet::init(int id, SDL_Texture* text, int x, int y, int h, int w)
 {
-	m_unitId = id;
 	m_drawable.rect.x = x;
 	m_drawable.rect.y = y;
 	m_drawable.rect.h = h;
 	m_drawable.rect.w = w;
 	m_drawable.texture = text;
+	m_hasReachedTarget = true;
 }
 
 void Bullet::update(int2 a)
@@ -28,11 +28,7 @@ void Bullet::update(int2 a)
 		m_drawable.rect.y -= min(m_drawable.rect.y - a.y, m_speed);
 	if (a.y > m_drawable.rect.y)
 		m_drawable.rect.y += min(a.y - m_drawable.rect.y, m_speed);
-}
-
-int Bullet::unitId()
-{
-	return m_unitId;
+	if (a.x == m_drawable.rect.x && a.y == m_drawable.rect.y) m_hasReachedTarget = true;
 }
 
 void Bullet::draw()

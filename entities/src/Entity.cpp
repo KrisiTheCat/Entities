@@ -8,7 +8,7 @@ Entity::Entity()
 Entity::~Entity()
 {
 }
-void Entity::update()
+void Entity::updateEntity()
 {
 	if (m_isMoving)
 	{

@@ -3,6 +3,7 @@
 #include <set>
 
 #include "Entity.h"
+#include "Attack.h"
 #include "ChaseState.h"
 #include "Presenter.h"
 #include "defines.h"
@@ -21,8 +22,9 @@ private:
 	int m_id;
 	Entity* m_entity;
 	MOVING_STATE m_movingState;
+	ATTACKING_STATE m_attackingState;
 	ChaseState m_chaseState;
-	set<int, int> m_attackTarget;
+	Attack m_attackState;
 	int2 m_moveDest;
 	bool m_isMoving = false;
 };
