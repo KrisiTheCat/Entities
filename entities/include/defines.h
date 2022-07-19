@@ -229,12 +229,6 @@ enum class ATTACKING_STATE
     ATTACK = 1
 };
 
-enum class MOVING_STATE
-{
-    NONE = 0,
-    CHASE = 1
-};
-
 struct Drawable
 {
     SDL_Texture* texture = nullptr;

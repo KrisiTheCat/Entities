@@ -25,9 +25,27 @@ void MovingContext::TransitionTo(MovingState* state) {
 /**
  * The Context delegates part of its behavior to the current State object.
  */
-void MovingContext::Request1() {
-    this->state_->Handle1();
+
+void MovingContext::update()
+{
+    this->state_->update();
 }
-void MovingContext::Request2() {
-    this->state_->Handle2();
+
+void MovingContext::init(Entity* entity)
+{
+    m_entity = entity;
+}
+
+void Chase::update()
+{
+    if (this->context_->m_entity->m_chaseTargets.size() > 0)
+    {
+        int2 a = this->context_->m_entity->m_chaseTargets.begin()->second->getPos();
+        this->context_->m_entity->move(a);
+    }
+}
+
+void Roam::update()
+{
+    std::cout << "Update B\n";
 }

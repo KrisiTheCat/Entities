@@ -14,30 +14,23 @@ void Behavior::init(BEHAVIOR_TYPE type, Entity* entity, Unit* reamor)
 	switch (type)
 	{
 	case BEHAVIOR_TYPE::HOSTILE:
-		m_movingState = MOVING_STATE::CHASE;
-		m_chaseState.init(entity);
-		m_chaseState.startChasing(1, reamor);
-		m_attackingState = ATTACKING_STATE::ATTACK;
-		m_attackState.init(entity);
-		m_attackState.startAttacking(reamor);
+
+		m_movingState = new MovingContext(new Chase);
+		m_movingState->init(m_entity);
+		m_entity->m_chaseTargets.insert(make_pair(0, reamor));
+
+		m_attackingState = new AttackingContext(new Attack);
+		m_attackingState->init(m_entity);
+		m_entity->m_attackTargets.push_back(reamor);
+
 		break;
 	}
 }
 
 void Behavior::update()
 {
-	switch (m_movingState)
-	{
-	case MOVING_STATE::CHASE:
-		m_chaseState.update();
-		break;
-	}
-	switch (m_attackingState)
-	{
-	case ATTACKING_STATE::ATTACK:
-		m_attackState.update();
-		break;
-	}
+	m_movingState->update();
+	m_attackingState->update();
 }
 
 void Behavior::startChasing(int id)

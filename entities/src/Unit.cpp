@@ -74,10 +74,8 @@ void Unit::drawBullets()
 
 void Unit::updateBullets()
 {
-	cout << "updateBullets in Unit" << endl;
 	for (int i = 0; i < m_bullets.size(); i++)
 	{
 		m_bullets.at(i).second.update(m_bullets.at(i).first->getPos());
-		cout << "79: " << m_bullets.at(i).first->getPos().x << " " << m_bullets.at(i).first->getPos().y << endl;
 	}
 }

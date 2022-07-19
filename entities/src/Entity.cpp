@@ -23,6 +23,11 @@ void Entity::updateEntity()
 	}
 }
 
+void Entity::startChasing(int type, Unit* target)
+{
+	m_chaseTargets.insert(make_pair(type, target));
+}
+
 void Entity::move(int2 a)
 {
 	m_isMoving = true;

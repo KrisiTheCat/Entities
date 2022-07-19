@@ -207,12 +207,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Attack.cpp" />
+    <ClCompile Include="src\AttackingState.cpp" />
     <ClCompile Include="src\Behavior.cpp" />
     <ClCompile Include="src\Board.cpp" />
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\Button.cpp" />
-    <ClCompile Include="src\ChaseState.cpp" />
     <ClCompile Include="src\ConfigManager.cpp" />
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Entity.cpp" />
@@ -230,12 +229,11 @@
     <ClCompile Include="src\Writer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Attack.h" />
+    <ClInclude Include="include\AttackingState.h" />
     <ClInclude Include="include\Behavior.h" />
     <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\Bullet.h" />
     <ClInclude Include="include\Button.h" />
-    <ClInclude Include="include\ChaseState.h" />
     <ClInclude Include="include\ConfigManager.h" />
     <ClInclude Include="include\defines.h" />
     <ClInclude Include="include\Engine.h" />

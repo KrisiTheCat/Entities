@@ -69,13 +69,10 @@
     <ClCompile Include="src\Behavior.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ChaseState.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Attack.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\MovingState.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AttackingState.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,13 +131,10 @@
     <ClInclude Include="include\Behavior.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="include\ChaseState.h">
-      <Filter>include</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Attack.h">
-      <Filter>include</Filter>
-    </ClInclude>
     <ClInclude Include="include\MovingState.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AttackingState.h">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
